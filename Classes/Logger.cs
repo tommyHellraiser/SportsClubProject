@@ -35,21 +35,9 @@ namespace StoreManagementSystem.Classes
 			{
 				Directory.CreateDirectory(log_path);
 			}
-			else
-			{
-				Debug.WriteLine("Folder already exists!");
-			}
 
-			//	Check if log file for today exists
+			//	Build log file path
 			log_full_path = log_path + DateTime.Now.ToString("yyyy-MM-dd") + ".log";
-			if (!File.Exists(log_full_path) && log_full_path != null)
-			{
-				File.Create(log_full_path);
-			}
-			else
-			{
-				Debug.WriteLine("File exists!");
-			}
 
 			//	Assign the writer to the static StreamWriter object to keep the file open in memory constantly for faster access
 			if (log_full_path == null)
