@@ -64,7 +64,6 @@
             txtUser.Size = new Size(205, 23);
             txtUser.TabIndex = 2;
             txtUser.Text = "User";
-            txtUser.TextChanged += txtUser_TextChanged;
             // 
             // txtPass
             // 
@@ -84,6 +83,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // Login
             // 
