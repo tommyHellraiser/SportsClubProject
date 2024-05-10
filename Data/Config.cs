@@ -42,7 +42,7 @@ namespace SportsClubProject.Data
 				//	If any of the required fields are either null or false, return false (Config is not valid)
 				if (this.Server == null || this.Server == "" 
 					|| this.Port == null || this.Port == "" 
-					|| this.Database == null
+					|| this.Database == null || this.Database == ""
 					|| this.DatabaseUser == null || this.DatabaseUser == ""
 					|| this.ResetDatabase == null)
 				{

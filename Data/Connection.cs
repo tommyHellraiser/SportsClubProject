@@ -57,7 +57,9 @@ namespace SportsClubProject.Data
         internal static void ResetDatabase()
         {
             //  Fetch reset scripts
+            string reset_query = $"DROP DATABASE IF EXISTS {Config.Database!}; \nCREATE DATABASE {Config.Database!}; \nUSE {Config.Database!};";
             string? query = File.ReadAllText("../../../MySql/SchemaReset.sql");
+            reset_query += query;
             string sp_creation = File.ReadAllText("../../../MySql/LoginClub.sql");
 			if (query == null)
             {
@@ -65,11 +67,15 @@ namespace SportsClubProject.Data
             }
 
             //  Open connection
-            MySqlConnection conn = GetInstance().CreateConnection();
-            conn.Open();
+            MySqlConnection conn = new MySqlConnection();
+            conn.ConnectionString = "datasource=" + Config.Server +
+				";port=" + Config.Port +
+				";username=" + Config.User +
+				";password=" + Config.Pass;
+			conn.Open();
 
             //  Execute schema reset
-            MySqlCommand cmd = new MySqlCommand(query, conn);
+            MySqlCommand cmd = new MySqlCommand(reset_query, conn);
             cmd.ExecuteNonQuery();
 
             //  Create SP
