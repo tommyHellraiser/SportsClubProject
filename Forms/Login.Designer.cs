@@ -63,7 +63,9 @@
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(205, 23);
             txtUser.TabIndex = 2;
-            txtUser.Text = "User";
+            txtUser.Text = "Usuario";
+            txtUser.Click += txtUser_Enter;
+            txtUser.Leave += txtUser_Leave;
             // 
             // txtPass
             // 
@@ -72,7 +74,9 @@
             txtPass.Name = "txtPass";
             txtPass.Size = new Size(205, 23);
             txtPass.TabIndex = 3;
-            txtPass.Text = "Password";
+            txtPass.Text = "Contraseña";
+            txtPass.Click += txtPass_Enter;
+            txtPass.Leave += txtPass_Leave;
             // 
             // btnLogin
             // 
@@ -98,6 +102,7 @@
             Controls.Add(pictureBox1);
             Name = "Login";
             Text = "Login";
+            Click += txtUser_Enter;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

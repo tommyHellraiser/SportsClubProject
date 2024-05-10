@@ -9,15 +9,16 @@ namespace SportsClubProject.Classes
 {
     internal class Person
     {
-        private string? name;
-        private string? lastname;
-        private string? pass;
-        private int phone;
-        private string? email;
-        private string? role;
+        private string name;
+        private string lastname;
+        private string pass;
+        private string phone;
+        private string email;
+        private string role;
         private DateTime birthdate;
 
-        public Person (string? name, string? lastname, string pass, int phone, string? email, string? role, DateTime birthdate)
+        public Person (string name, string lastname, string pass, string phone, string email, 
+            string role, DateTime birthdate)
         {
             this.name = name;
             this.lastname = lastname;
@@ -32,7 +33,7 @@ namespace SportsClubProject.Classes
         public string? Lastname { get => lastname; set => lastname = value; }
         public string? Pass { get => pass; set => pass = value; }
 
-        public int Phone { get => phone; set => phone = value; }
+        public string Phone { get => phone; set => phone = value; }
         public string? Email { get => email; set => email = value; }
         public string? Role { get => role; set => role = value; }
         public DateTime Birthdate { get => birthdate; set => birthdate = value; }
