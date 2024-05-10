@@ -1,6 +1,6 @@
-drop database if exists SportClub;
-create database SportClub;
-use SportClub;
+drop database if exists SportsClub;
+create database SportsClub;
+use SportsClub;
 
 create table roles(
 RoleUser int,
@@ -14,9 +14,9 @@ insert into roles values
 
 create table user(
 CodUser int auto_increment,
-NameUser varchar (20),
+NameUser varchar (20) UNIQUE KEY NOT NULL,
 LastName varchar (20),
-PassUser varchar (15),
+PassUser varchar (15) NOT NULL,
 Phone varchar (20),
 Email varchar(15),
 Birthday date,

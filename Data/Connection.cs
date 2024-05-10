@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +19,10 @@ namespace SportsClubProject.Data
         private Connection()
 
         {
-            this.database = "SportClub";
-            this.server = "localhost";
-            this.port = "3306";
-            this.user = "root";
+            this.database = Config.Database!;
+            this.server = Config.Server!;
+            this.port = Config.Port!;
+            this.user = Config.User!;
             this.key = "";
         }
 
@@ -39,18 +40,43 @@ namespace SportsClubProject.Data
             }
             catch (Exception ex)
             {
-                newString = null;
+                Debug.WriteLine($"Error connecting to MySql: {ex.Message}");
                 throw;
             }
             return newString;
         }
-        public static Connection getInstance()
+        public static Connection GetInstance()
         {
             if (con == null) 
             {
                 con = new Connection();
             }
             return con;
+        }
+
+        internal static void ResetDatabase()
+        {
+            //  Fetch reset scripts
+            string? query = File.ReadAllText("../../../MySql/SchemaReset.sql");
+            string sp_creation = File.ReadAllText("../../../MySql/LoginClub.sql");
+			if (query == null)
+            {
+                throw new ArgumentNullException("Database reset file was empty!");
+            }
+
+            //  Open connection
+            MySqlConnection conn = GetInstance().CreateConnection();
+            conn.Open();
+
+            //  Execute schema reset
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+
+            //  Create SP
+            cmd.CommandText = sp_creation;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
     }
 }

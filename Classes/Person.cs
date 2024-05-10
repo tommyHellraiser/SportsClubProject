@@ -9,12 +9,12 @@ namespace SportsClubProject.Classes
 {
     internal class Person
     {
-        private string name;
-        private string lastname;
-        private string pass;
-        private string phone;
-        private string email;
-        private string role;
+        private string? name;
+        private string? lastname;
+        private string? pass;
+        private string? phone;
+        private string? email;
+        private string? role;
         private DateTime birthdate;
 
         public Person (string name, string lastname, string pass, string phone, string email, 
@@ -27,6 +27,17 @@ namespace SportsClubProject.Classes
             this.email = email;
             this.role = role;
             this.birthdate = birthdate;
+        }
+
+        /// <summary>
+        /// Constructor overload, to allow login without having to define unknown parameters
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pass"></param>
+        public Person(string name, string pass)
+        {
+            this.name = name;
+            this.pass = pass;
         }
 
         public string? Name { get => name; set => name = value; }

@@ -18,6 +18,11 @@ namespace SportsClubProject.Classes
         {
             
         }
+
+        public User(string name, string pass) : base(name, pass)
+        {
+
+        }
         
         public DataTable LogUser ()
         {
@@ -27,7 +32,7 @@ namespace SportsClubProject.Classes
 
             try
             {
-                sqlCon = Connection.getInstance().CreateConnection();
+                sqlCon = Connection.GetInstance().CreateConnection();
 
                 MySqlCommand command = new MySqlCommand ("Login", sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
@@ -37,7 +42,7 @@ namespace SportsClubProject.Classes
                 command.Parameters.Add("Pass", MySqlDbType.VarChar).Value = this.Pass;
 
                 sqlCon.Open();
-                result = command.ExecuteReader(); 
+                result = command.ExecuteReader();
 
                 dt.Load(result); 
 
@@ -52,7 +57,7 @@ namespace SportsClubProject.Classes
                 if (sqlCon.State == ConnectionState.Open)
                 { sqlCon.Close(); };
             }
-        }   
+        }
         
     }
 }

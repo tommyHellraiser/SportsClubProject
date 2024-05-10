@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace SportsClubProject.Data
 {
@@ -13,24 +14,35 @@ namespace SportsClubProject.Data
 		internal static string? Port;
 		internal static string? Database;
 		internal static string? User;
+		internal static string? Pass;
 		internal static bool ResetDatabase;
 
 		public class JsonConfig
 		{
-			internal string? Server { get; set; }
-			internal string? Port { get; set; }
-			internal string? Database { get; set; }
-			internal string? DatabaseUser { get; set; }
-			//	Field not used at the moment
-			//private string? DatabasePass { get; set; }
-			internal bool? ResetDatabase { get; set; }
+			public string? Server { get; set; }
+			public string? Port { get; set; }
+			public string? Database { get; set; }
+			public string? DatabaseUser { get; set; }
+			public string? DatabasePass { get; set; }
+			public bool? ResetDatabase { get; set; }
+
+			public JsonConfig(string? Server, string? Port, string? Database, string? DatabaseUser, string? DatabasePass, bool? ResetDatabase)
+			{
+				this.Server = Server;
+				this.Port = Port;
+				this.Database = Database;
+				this.DatabaseUser = DatabaseUser;
+				this.DatabasePass = DatabasePass;
+				this.ResetDatabase = ResetDatabase;
+			}
+
 
 			internal bool IsConfigValid()
 			{
 				//	If any of the required fields are either null or false, return false (Config is not valid)
 				if (this.Server == null || this.Server == "" 
 					|| this.Port == null || this.Port == "" 
-					|| this.Database == null || this.Database == ""
+					|| this.Database == null
 					|| this.DatabaseUser == null || this.DatabaseUser == ""
 					|| this.ResetDatabase == null)
 				{
@@ -44,7 +56,7 @@ namespace SportsClubProject.Data
 		internal static void LoadFromJson()
 		{
 			//	Attempt to load from file
-			using (StreamReader reader = new StreamReader("../../../config/config.json"))
+			using (StreamReader reader = new StreamReader("../../../Config/config.json"))
 			{
 				string? json = reader.ReadToEnd();
 				if (json == null)
@@ -66,9 +78,28 @@ namespace SportsClubProject.Data
 				Config.Port = configuration.Port;
 				Config.Database = configuration.Database;
 				Config.User = configuration.DatabaseUser;
+				Config.Pass = configuration.DatabasePass;
 				Config.ResetDatabase = (bool)configuration.ResetDatabase!;
 			}
 		}
 
+		internal static void WriteToJson()
+		{
+			JsonConfig configuration = new JsonConfig(
+				Config.Server!,
+				Config.Port!,
+				Config.Database!,
+				Config.User!,
+				Config.Pass!,
+				Config.ResetDatabase
+			);
+			
+			using StreamWriter writer = new StreamWriter("../../../Config/config.json");
+			string config = JsonSerializer.Serialize<JsonConfig>(configuration, new JsonSerializerOptions { MaxDepth = 4, WriteIndented = true });
+
+			writer.Write(config);
+
+			writer.Close();
+		}
 	}
 }
