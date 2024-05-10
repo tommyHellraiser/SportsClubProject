@@ -12,7 +12,8 @@ namespace SportsClubProject.Classes
 {
     internal class User:Person
     {
-        public User(string? name, string? lastname, string pass, int phone, string? email, string? role, DateTime birthdate)
+        public User(string name, string lastname, string pass, string phone, 
+            string? email, string? role, DateTime birthdate)
         : base(name, lastname, pass, phone, email, role, birthdate)
         {
             
@@ -31,7 +32,7 @@ namespace SportsClubProject.Classes
                 MySqlCommand command = new MySqlCommand ("Login", sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("Usu",
+                command.Parameters.Add("Us",
                 MySqlDbType.VarChar).Value = this.Name;
                 command.Parameters.Add("Pass", MySqlDbType.VarChar).Value = this.Pass;
 
