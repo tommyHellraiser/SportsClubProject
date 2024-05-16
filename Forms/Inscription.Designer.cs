@@ -139,6 +139,7 @@
             btnClean.TabIndex = 10;
             btnClean.Text = "Limpiar";
             btnClean.UseVisualStyleBackColor = true;
+            btnClean.Click += btnClean_Click;
             // 
             // btnBack
             // 

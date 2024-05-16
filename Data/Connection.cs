@@ -61,7 +61,8 @@ namespace SportsClubProject.Data
             string? query = File.ReadAllText("../../../MySql/SchemaReset.sql");
             reset_query += query;
             string sp_creation = File.ReadAllText("../../../MySql/LoginClub.sql");
-			if (query == null)
+            string sp_creation2 = File.ReadAllText("../../../MySql/ProcedureNewPostulant.sql");
+            if (query == null)
             {
                 throw new ArgumentNullException("Database reset file was empty!");
             }
@@ -81,7 +82,9 @@ namespace SportsClubProject.Data
             //  Create SP
             cmd.CommandText = sp_creation;
             cmd.ExecuteNonQuery();
-
+            //  Create SP2
+            cmd.CommandText = sp_creation2;
+            cmd.ExecuteNonQuery();
             conn.Close();
         }
     }

@@ -18,7 +18,7 @@ BEGIN
     SET existe = (SELECT COUNT(*) FROM postulant WHERE TDoc = Typ AND Doc = DocP);
 
     IF existe = 0 THEN
-        INSERT INTO postulante VALUES(filas, Nom, Ape, Tip, Doc);
+        INSERT INTO postulant VALUES(filas, Nam, LstN, Typ, DocP);
         SET res = filas;
     ELSE
         SET res = existe; 

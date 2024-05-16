@@ -56,12 +56,21 @@ namespace SportsClubProject.Forms
                     }
                     else
                     {
-                        MessageBox.Show("se almaceno con exito con el codigo Nro" 
+                        MessageBox.Show("se almaceno con exito con el codigo Nro"
                             + response, "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
             }
+        }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            txtLastName.Text = "";
+            txtDni.Text = "";
+            cboType.Text = "";
+            txtName.Focus();
         }
     }
 }
