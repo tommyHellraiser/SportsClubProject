@@ -12,6 +12,15 @@ insert into user_roles values
 (120,'User'),
 (121,'Admin');
 
+create table postulant(
+Number int,
+NameP varchar(30),
+LastName varchar(40),
+TDoc varchar(20),
+Doc int,
+constraint pk_postulant primary key(Number)
+);
+
 CREATE TABLE users(
 	ID int AUTO_INCREMENT,
 	Username varchar (20) UNIQUE KEY NOT NULL,

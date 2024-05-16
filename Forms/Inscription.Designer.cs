@@ -34,13 +34,13 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            cboType = new ComboBox();
+            txtDni = new TextBox();
+            txtName = new TextBox();
+            txtLastName = new TextBox();
+            btnEnter = new Button();
+            btnClean = new Button();
+            btnBack = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -91,61 +91,64 @@
             label5.TabIndex = 4;
             label5.Text = "DNI";
             // 
-            // comboBox1
+            // cboType
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(422, 248);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(138, 25);
-            comboBox1.TabIndex = 5;
+            cboType.FormattingEnabled = true;
+            cboType.Items.AddRange(new object[] { "DNI" });
+            cboType.Location = new Point(422, 248);
+            cboType.Name = "cboType";
+            cboType.Size = new Size(138, 25);
+            cboType.TabIndex = 5;
             // 
-            // textBox1
+            // txtDni
             // 
-            textBox1.Location = new Point(671, 248);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(180, 25);
-            textBox1.TabIndex = 6;
+            txtDni.Location = new Point(671, 248);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(180, 25);
+            txtDni.TabIndex = 6;
             // 
-            // textBox2
+            // txtName
             // 
-            textBox2.Location = new Point(528, 129);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(247, 25);
-            textBox2.TabIndex = 7;
+            txtName.Location = new Point(528, 129);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(247, 25);
+            txtName.TabIndex = 7;
             // 
-            // textBox3
+            // txtLastName
             // 
-            textBox3.Location = new Point(528, 176);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(247, 25);
-            textBox3.TabIndex = 8;
+            txtLastName.Location = new Point(528, 176);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(247, 25);
+            txtLastName.TabIndex = 8;
             // 
-            // button1
+            // btnEnter
             // 
-            button1.Location = new Point(396, 358);
-            button1.Name = "button1";
-            button1.Size = new Size(141, 36);
-            button1.TabIndex = 9;
-            button1.Text = "Ingresar";
-            button1.UseVisualStyleBackColor = true;
+            btnEnter.Location = new Point(396, 358);
+            btnEnter.Name = "btnEnter";
+            btnEnter.Size = new Size(141, 36);
+            btnEnter.TabIndex = 9;
+            btnEnter.Text = "Ingresar";
+            btnEnter.UseVisualStyleBackColor = true;
+            btnEnter.Click += btnEnter_Click;
             // 
-            // button2
+            // btnClean
             // 
-            button2.Location = new Point(574, 358);
-            button2.Name = "button2";
-            button2.Size = new Size(141, 36);
-            button2.TabIndex = 10;
-            button2.Text = "Limpiar";
-            button2.UseVisualStyleBackColor = true;
+            btnClean.Location = new Point(574, 358);
+            btnClean.Name = "btnClean";
+            btnClean.Size = new Size(141, 36);
+            btnClean.TabIndex = 10;
+            btnClean.Text = "Limpiar";
+            btnClean.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnBack
             // 
-            button3.Location = new Point(743, 358);
-            button3.Name = "button3";
-            button3.Size = new Size(141, 36);
-            button3.TabIndex = 11;
-            button3.Text = "Volver";
-            button3.UseVisualStyleBackColor = true;
+            btnBack.Location = new Point(743, 358);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(141, 36);
+            btnBack.TabIndex = 11;
+            btnBack.Text = "Volver";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // pictureBox1
             // 
@@ -164,13 +167,13 @@
             BackColor = Color.FromArgb(255, 128, 0);
             ClientSize = new Size(903, 510);
             Controls.Add(pictureBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
+            Controls.Add(btnBack);
+            Controls.Add(btnClean);
+            Controls.Add(btnEnter);
+            Controls.Add(txtLastName);
+            Controls.Add(txtName);
+            Controls.Add(txtDni);
+            Controls.Add(cboType);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -191,13 +194,13 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private ComboBox cboType;
+        private TextBox txtDni;
+        private TextBox txtName;
+        private TextBox txtLastName;
+        private Button btnEnter;
+        private Button btnClean;
+        private Button btnBack;
         private PictureBox pictureBox1;
     }
 }
