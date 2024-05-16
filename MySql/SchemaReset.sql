@@ -9,8 +9,8 @@ CONSTRAINT PRIMARY KEY(ID)
 );
 
 insert into user_roles values
-(120,'Admin'),
-(121,'User');
+(120,'User'),
+(121,'Admin');
 
 CREATE TABLE users(
 	ID int AUTO_INCREMENT,
@@ -28,4 +28,7 @@ CREATE TABLE users(
 );
 
 INSERT INTO users(Username, FirstName, LastName, Pass, Phone, Email, Birthdate, UserRole) 
-VALUES('paganeitor', 'Horacio', 'Pagani', '123456', '5465465', 'ml@jaja.com', '1988-12-30', 121);
+VALUES
+('paganeitor', 'Horacio', 'Pagani', '123456', '5465465', 'ml@jaja.com', '1988-12-30', 121),
+('mlopez', 'Mariano', 'Lopez', '22112211', '11213456', 'the_marian@live.com', '1989-12-1', 121),
+('tommy', 'Tomas', 'Ponce', '000000', '2615105315', 'hellraiser@this.com', '1994-11-25', 121);

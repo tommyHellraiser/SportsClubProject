@@ -15,16 +15,6 @@ namespace SportsClubProject
 
 				//	Handles login sequence and ensures a user is logged in
 				loggedInUser = handleLogin();
-
-				//	TODO continue here
-
-				lblWelcome.Text = $"Bienvenido/a {loggedInUser.Username}";
-				lblName.Text = $"Nombre: {loggedInUser.FirstName}";
-				lblLastName.Text = $"Apellido: {loggedInUser.LastName}";
-				lblPhone.Text = $"Telefono: {loggedInUser.Phone}";
-				lblEmail.Text = $"Email: {loggedInUser.Email}";
-				lblBirthday.Text = $"Fecha de nac.: {loggedInUser.BirthDate:dd/MM/yyyy}";
-				lblRole.Text = $"Rol: {loggedInUser.UserRole}";
 			}
 		}
 
@@ -49,7 +39,45 @@ namespace SportsClubProject
 			//	If property LoggedInUser is not null, the user was successfully logged in. Close form
 			login_form.Close();
 
+			lblUser.Text = $"{user.Username} ({user.UserRole})";
+
 			return user;
+		}
+
+		#region Button Handlers
+
+		private void btnExit_Click(object sender, EventArgs e)
+		{
+			Environment.Exit(0);
+		}
+
+		private void btnSignUp_Click(object sender, EventArgs e)
+		{
+			//	TODO create sign up form and show it
+		}
+
+		private void btnAssignCourse_Click(object sender, EventArgs e)
+		{
+			//	TODO create assign course form and show it
+		}
+
+		private void btnPayCourse_Click(object sender, EventArgs e)
+		{
+			//	TODO create pay course form and show it
+		}
+
+		private void btnSendTicket_Click(object sender, EventArgs e)
+		{
+			//	TODO create send ticket form and show it
+		}
+
+		#endregion
+
+		private void btnLogout_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			loggedInUser = handleLogin();
+			this.Show();
 		}
 	}
 }

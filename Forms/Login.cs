@@ -27,17 +27,30 @@ namespace SportsClubProject.Forms
             string inputName = txtUser.Text;
             string inputPass = txtPass.Text;
 
-            try
+            while (true)
             {
-                //  Save login data in instance
-				this.loggedInUser = User.LogUserIn(inputName, inputPass);
+				try
+				{
+					//  Save login data in instance
+					this.loggedInUser = User.LogUserIn(inputName, inputPass);
 
-                this.Hide();
+					this.Hide();
+
+                    return;
+				}
+				catch (InvalidDataException ex)
+				{
+					MessageBox.Show(
+						$"{ex.Message}"
+					);
+                    return;
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine($"Error logging user in:\n{ex.Message}");
+                    return;
+				}
 			}
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error logging user in:\n{ex.Message}");
-            }
         }
 
         private void txtUser_Enter(object sender, EventArgs e)

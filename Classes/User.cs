@@ -17,10 +17,10 @@ namespace SportsClubProject.Classes
         {
 
             DataTable table = ExecLoginStoredProc(inputName, inputPass);
-            User? newUser = null;
+			User? newUser;
 
-            //  If there was a User match, extract data
-            if (table.Rows.Count > 0)
+			//  If there was a User match, extract data
+			if (table.Rows.Count > 0)
             {
                 //  If a user is found, overwrite newUser, otherwis, it'll be null
                 User user = new User();
@@ -31,9 +31,13 @@ namespace SportsClubProject.Classes
 				user.Phone = table.Rows[0]["Phone"].ToString();
 				user.Email = table.Rows[0]["Email"].ToString();
 				user.BirthDate = Convert.ToDateTime(table.Rows[0]["Birthdate"].ToString());
-				user.UserRole = table.Rows[0]["FirstName"].ToString();
+				user.UserRole = table.Rows[0]["RoleName"].ToString();
 
                 newUser = user;
+			}
+			else
+			{
+				throw new InvalidDataException("Usuario o pass invalidos!");
 			}
 
             return newUser;
@@ -70,6 +74,7 @@ namespace SportsClubProject.Classes
 			}
 			catch (Exception ex)
 			{
+				conn.Close();
                 Debug.WriteLine($"Error executing Login SP: {ex.Message}");
 				throw;
 			}
