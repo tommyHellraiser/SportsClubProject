@@ -71,13 +71,13 @@ namespace SportsClubProject
 			//	TODO create send ticket form and show it
 		}
 
-		#endregion
-
 		private void btnLogout_Click(object sender, EventArgs e)
 		{
 			this.Hide();
 			loggedInUser = handleLogin();
 			this.Show();
 		}
+
+		#endregion
 	}
 }
