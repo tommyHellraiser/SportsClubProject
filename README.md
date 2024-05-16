@@ -14,3 +14,8 @@ Para volver a reiniciar la base, puede configurar "ResetDatabase" en true en Con
 
 ## Aclaraciones extra
 - Los archivos de la base de datos y su schema estan dentro de la carpeta MySql
+
+## Usuarios disponibles
+- Username: "paganeitor"; Pass: "123456"
+- Username: "mlopez"; Pass: "22112211"
+- Username: "tommy"; Pass: "000000"
