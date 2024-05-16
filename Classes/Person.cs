@@ -9,44 +9,46 @@ namespace SportsClubProject.Classes
 {
     internal class Person
     {
-        private string? name;
-        private string? lastname;
+        private string? username;
+        private string? firstName;
+        private string? lastName;
         private string? pass;
         private string? phone;
         private string? email;
         private string? role;
-        private DateTime birthdate;
+        private DateTime birthDate;
 
-        public Person (string name, string lastname, string pass, string phone, string email, 
-            string role, DateTime birthdate)
+        public Person (string firstName, string lastName, string pass, string phone, string email, 
+            string role, DateTime birthDate)
         {
-            this.name = name;
-            this.lastname = lastname;
-            this.Pass = pass;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.pass = pass;
             this.phone = phone;
             this.email = email;
             this.role = role;
-            this.birthdate = birthdate;
+            this.birthDate = birthDate;
         }
 
-        /// <summary>
-        /// Constructor overload, to allow login without having to define unknown parameters
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="pass"></param>
         public Person(string name, string pass)
         {
-            this.name = name;
+            this.firstName = name;
             this.pass = pass;
         }
 
-        public string? Name { get => name; set => name = value; }
-        public string? Lastname { get => lastname; set => lastname = value; }
+        public Person()
+        {
+
+        }
+
+        public string? Username { get => username; set => username = value; }
+        public string? FirstName { get => firstName; set => firstName = value; }
+        public string? LastName { get => lastName; set => lastName = value; }
         public string? Pass { get => pass; set => pass = value; }
 
-        public string Phone { get => phone; set => phone = value; }
+        public string? Phone { get => phone; set => phone = value; }
         public string? Email { get => email; set => email = value; }
-        public string? Role { get => role; set => role = value; }
-        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
-    }
+        public string? UserRole { get => role; set => role = value; }
+        public DateTime BirthDate { get => birthDate; set => birthDate = value; }
+	}
 }

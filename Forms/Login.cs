@@ -1,10 +1,19 @@
 ﻿using SportsClubProject.Classes;
 using System.Data;
+using System.Diagnostics;
 
 namespace SportsClubProject.Forms
 {
     public partial class Login : Form
     {
+        private User? loggedInUser;
+
+        internal User? LoggedInUser
+        {
+            get => loggedInUser;
+            set => loggedInUser = value;
+        }
+
         public Login()
         {
             InitializeComponent();
@@ -13,29 +22,21 @@ namespace SportsClubProject.Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DataTable loginTable = new DataTable();
-            //  Create User object only from username and password to allow db select
-            User newUser = new User(txtUser.Text, txtPass.Text);
-            loginTable = newUser.LogUser();
-            if (loginTable.Rows.Count > 0)
+
+            //  Get input data to fetch user if data matches
+            string inputName = txtUser.Text;
+            string inputPass = txtPass.Text;
+
+            try
             {
-                string? userName = loginTable.Rows[0]["NameUser"].ToString();
-                string? lastName = loginTable.Rows[0]["LastName"].ToString();
-                string? email = loginTable.Rows[0]["Email"].ToString();
-                DateTime birthday = Convert.ToDateTime(loginTable.Rows[0]["Birthday"]);
-                string? phone = loginTable.Rows[0]["Phone"].ToString();
-                string? role = loginTable.Rows[0]["NameRole"].ToString();
-         
-                if (userName != null && lastName!=null && email != null 
-                    && phone != null && role != null)
-                {
-                    Form homeScreen = new HomeScreen(userName, lastName, email,
-                        birthday, phone, role);
-                    homeScreen.Show();
-                }
-            }
-            else
+                //  Save login data in instance
+				this.loggedInUser = User.LogUserIn(inputName, inputPass);
+
+                this.Hide();
+			}
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario y/o password incorrecto");
+                Debug.WriteLine($"Error logging user in:\n{ex.Message}");
             }
         }
 

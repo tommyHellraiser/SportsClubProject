@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace SportsClubProject.Data
 {
-	internal class Init
+	internal class InitConfig
 	{
-		public Init()
+		public InitConfig()
 		{
 			try
 			{
 				Config.LoadFromJson();
 
-				//	Reset Config.ResetDatabase to false once reset has been executed
+				//	Reset Config.ResetDatabase to false once db reset has been executed
 				if (Config.ResetDatabase)
 				{
 					Connection.ResetDatabase();
@@ -33,6 +33,7 @@ namespace SportsClubProject.Data
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error
 				);
+				//	Exit application with code -100
 				Environment.Exit(-100);
 			}
 		}

@@ -14,8 +14,8 @@ namespace SportsClubProject
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-			new Init();
-			Application.Run(new Login());
+			new InitConfig();
+			Application.Run(new HomeScreen());
 		}
 	}
 }

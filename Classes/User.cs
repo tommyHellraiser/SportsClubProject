@@ -1,63 +1,88 @@
 ﻿using MySql.Data.MySqlClient;
 using SportsClubProject.Data;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics;
 
 namespace SportsClubProject.Classes
 {
     internal class User:Person
     {
-        public User(string name, string lastname, string pass, string phone, 
-            string? email, string? role, DateTime birthdate)
-        : base(name, lastname, pass, phone, email, role, birthdate)
-        {
-            
-        }
-
-        public User(string name, string pass) : base(name, pass)
+        public User() : base()
         {
 
         }
-        
-        public DataTable LogUser ()
+                
+        public static User? LogUserIn (string inputName, string inputPass)
         {
-            MySqlDataReader result;
-            DataTable dt = new DataTable();
-            MySqlConnection sqlCon = new MySqlConnection();
 
-            try
+            DataTable table = ExecLoginStoredProc(inputName, inputPass);
+            User? newUser = null;
+
+            //  If there was a User match, extract data
+            if (table.Rows.Count > 0)
             {
-                sqlCon = Connection.GetInstance().CreateConnection();
+                //  If a user is found, overwrite newUser, otherwis, it'll be null
+                User user = new User();
 
-                MySqlCommand command = new MySqlCommand ("Login", sqlCon);
-                command.CommandType = CommandType.StoredProcedure;
+                user.Username = table.Rows[0]["Username"].ToString();
+                user.FirstName = table.Rows[0]["FirstName"].ToString();
+				user.LastName = table.Rows[0]["LastName"].ToString();
+				user.Phone = table.Rows[0]["Phone"].ToString();
+				user.Email = table.Rows[0]["Email"].ToString();
+				user.BirthDate = Convert.ToDateTime(table.Rows[0]["Birthdate"].ToString());
+				user.UserRole = table.Rows[0]["FirstName"].ToString();
 
-                command.Parameters.Add("Us",
-                MySqlDbType.VarChar).Value = this.Name;
-                command.Parameters.Add("Pass", MySqlDbType.VarChar).Value = this.Pass;
+                newUser = user;
+			}
 
-                sqlCon.Open();
-                result = command.ExecuteReader();
-
-                dt.Load(result); 
-
-                return dt;
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open)
-                { sqlCon.Close(); };
-            }
+            return newUser;
         }
-        
+
+
+        #region Database methods
+
+        private static DataTable ExecLoginStoredProc(string inputUsername, string inputPass)
+        {
+
+			MySqlDataReader result;
+			DataTable dt = new DataTable();
+			MySqlConnection conn = new MySqlConnection();
+
+			try
+			{
+				conn = Connection.GetInstance().CreateConnection();
+
+				MySqlCommand command = new MySqlCommand("Login", conn);
+				command.CommandType = CommandType.StoredProcedure;
+
+				command.Parameters.Add("InputUsername", MySqlDbType.VarChar).Value = inputUsername;
+				command.Parameters.Add("InputPass", MySqlDbType.VarChar).Value = inputPass;
+
+				conn.Open();
+				result = command.ExecuteReader();
+
+				dt.Load(result);
+
+                conn.Close();
+
+				return dt;
+			}
+			catch (Exception ex)
+			{
+                Debug.WriteLine($"Error executing Login SP: {ex.Message}");
+				throw;
+			}
+			finally
+			{
+				if (conn.State == ConnectionState.Open)
+				{ 
+                    conn.Close();
+                }
+			}
+        }
+
+        #endregion
+
     }
 }
