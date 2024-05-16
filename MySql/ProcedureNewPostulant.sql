@@ -1,26 +1,22 @@
   
 CREATE PROCEDURE NewPostulant(
-    IN Nam VARCHAR(30),
-    IN LstN VARCHAR(40),
-    IN Typ VARCHAR(20),
-    IN DocP INT,
-    OUT res INT
+    IN NewName VARCHAR(30),
+    IN NewLastName VARCHAR(40),
+    IN NewDocumentType VARCHAR(20),
+    IN NewDocument INT,
+    OUT Response INT
 )
 BEGIN
-    DECLARE filas INT DEFAULT 0;
-    DECLARE existe INT DEFAULT 0;
+    DECLARE NewID INT DEFAULT 0;
+    DECLARE postulantExists INT DEFAULT 0;
 
-    SET filas = (SELECT MAX(NameP) + 1 FROM postulant);
-    IF filas IS NULL THEN
-        SET filas = 452; 
-    END IF;
+    SET postulantExists = (SELECT COUNT(*) FROM postulants WHERE DocumentType = NewDocumentType AND Document = NewDocument);
 
-    SET existe = (SELECT COUNT(*) FROM postulant WHERE TDoc = Typ AND Doc = DocP);
-
-    IF existe = 0 THEN
-        INSERT INTO postulant VALUES(filas, Nam, LstN, Typ, DocP);
-        SET res = filas;
+    IF postulantExists = 1 THEN
+        SET Response = -1;
     ELSE
-        SET res = existe; 
+        INSERT INTO postulants(FirstName, LastName, DocumentType, Document) 
+            VALUES(NewName, NewLastName, NewDocumentType, NewDocument);
+        SET Response = (SELECT MAX(ID) FROM postulants);
     END IF;
 END;

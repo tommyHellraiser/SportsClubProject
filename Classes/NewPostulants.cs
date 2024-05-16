@@ -3,6 +3,7 @@ using SportsClubProject.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,16 +22,16 @@ namespace SportsClubProject.Classes
                 MySqlCommand command = new MySqlCommand("NewPostulant",
                 sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("Nam", MySqlDbType.VarChar).Value =
+                command.Parameters.Add("NewName", MySqlDbType.VarChar).Value =
                 newPostulant.Name;
-                command.Parameters.Add("LstN", MySqlDbType.VarChar).Value =
+                command.Parameters.Add("NewLastName", MySqlDbType.VarChar).Value =
                 newPostulant.LastName;
-                command.Parameters.Add("Typ", MySqlDbType.VarChar).Value =
+                command.Parameters.Add("NewDocumentType", MySqlDbType.VarChar).Value =
                 newPostulant.TDoc;
-                command.Parameters.Add("DocP", MySqlDbType.Int32).Value =
+                command.Parameters.Add("NewDocument", MySqlDbType.Int32).Value =
                 newPostulant.Doc;
                 MySqlParameter response = new MySqlParameter();
-                response.ParameterName = "res";
+                response.ParameterName = "Response";
                 response.MySqlDbType = MySqlDbType.Int32;
                 response.Direction = ParameterDirection.Output;
                 command.Parameters.Add(response);
@@ -41,6 +42,7 @@ namespace SportsClubProject.Classes
             catch (Exception ex)
             {
                 exit = ex.Message;
+                Debug.WriteLine($"Error executing NewPostulant SP: {ex.Message}");
             }
             finally
             {

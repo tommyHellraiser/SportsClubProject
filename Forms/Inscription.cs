@@ -21,9 +21,7 @@ namespace SportsClubProject.Forms
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            HomeScreen homeScreen = new HomeScreen();
-            homeScreen.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -31,7 +29,7 @@ namespace SportsClubProject.Forms
             if (txtName.Text == "" || txtLastName.Text == "" ||
                 txtDni.Text == "" || cboType.Text == "")
             {
-                MessageBox.Show("Debe completar datos requeridos (*) ",
+                MessageBox.Show("Debe completar datos requeridos",
                 "AVISO DEL SISTEMA", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
             }
@@ -49,7 +47,8 @@ namespace SportsClubProject.Forms
                 bool isNumber = int.TryParse(response, out int code);
                 if (isNumber)
                 {
-                    if (code == 1)
+                    //  For code -1, postulant already exists. Retry with another Document
+                    if (code == -1)
                     {
                         MessageBox.Show("POSTULANTE YA EXISTE", "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -59,6 +58,8 @@ namespace SportsClubProject.Forms
                         MessageBox.Show("se almaceno con exito con el codigo Nro"
                             + response, "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+                        this.Close();
                     }
                 }
             }

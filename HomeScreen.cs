@@ -18,6 +18,10 @@ namespace SportsClubProject
             }
         }
 
+        /// <summary>
+        /// Executes the login sequence calling the Login form. Requires that a user is logged in to continue using application
+        /// </summary>
+        /// <returns></returns>
         private User handleLogin()
         {
             Login login_form = new Login();
@@ -49,7 +53,6 @@ namespace SportsClubProject
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-           // Environment.Exit(0);
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)

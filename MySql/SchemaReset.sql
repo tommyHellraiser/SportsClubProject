@@ -1,24 +1,25 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_roles;
 DROP PROCEDURE IF EXISTS Login;
+DROP PROCEDURE IF EXISTS NewPostulant;
 
 CREATE TABLE user_roles(
-ID int,
-RoleName varchar(30),
-CONSTRAINT PRIMARY KEY(ID)
+	ID int,
+	RoleName varchar(30),
+	CONSTRAINT PRIMARY KEY(ID)
 );
 
 insert into user_roles values
 (120,'User'),
 (121,'Admin');
 
-create table postulant(
-Number int,
-NameP varchar(30),
-LastName varchar(40),
-TDoc varchar(20),
-Doc int,
-constraint pk_postulant primary key(Number)
+create table postulants(
+	ID int AUTO_INCREMENT,
+	FirstName varchar(30),
+	LastName varchar(40),
+	DocumentType varchar(20),
+	Document int,
+	constraint pk_postulant primary key(ID)
 );
 
 CREATE TABLE users(
