@@ -30,7 +30,7 @@
         {
             lblUser = new Label();
             btnSignUp = new Button();
-            btnAssignCourse = new Button();
+            btnListMembers = new Button();
             btnPayCourse = new Button();
             btnSendTicket = new Button();
             btnExit = new Button();
@@ -58,16 +58,16 @@
             btnSignUp.UseVisualStyleBackColor = true;
             btnSignUp.Click += btnSignUp_Click;
             // 
-            // btnAssignCourse
+            // btnListMembers
             // 
-            btnAssignCourse.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnAssignCourse.Location = new Point(428, 131);
-            btnAssignCourse.Name = "btnAssignCourse";
-            btnAssignCourse.Size = new Size(280, 89);
-            btnAssignCourse.TabIndex = 2;
-            btnAssignCourse.Text = "Asignar Curso";
-            btnAssignCourse.UseVisualStyleBackColor = true;
-            btnAssignCourse.Click += btnAssignCourse_Click;
+            btnListMembers.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnListMembers.Location = new Point(428, 131);
+            btnListMembers.Name = "btnListMembers";
+            btnListMembers.Size = new Size(280, 89);
+            btnListMembers.TabIndex = 2;
+            btnListMembers.Text = "Listar socios";
+            btnListMembers.UseVisualStyleBackColor = true;
+            btnListMembers.Click += btnListMembers_Click;
             // 
             // btnPayCourse
             // 
@@ -123,7 +123,7 @@
             Controls.Add(btnExit);
             Controls.Add(btnSendTicket);
             Controls.Add(btnPayCourse);
-            Controls.Add(btnAssignCourse);
+            Controls.Add(btnListMembers);
             Controls.Add(btnSignUp);
             Controls.Add(lblUser);
             Name = "HomeScreen";
@@ -136,7 +136,7 @@
 
         private Label lblUser;
 		private Button btnSignUp;
-		private Button btnAssignCourse;
+		private Button btnListMembers;
 		private Button btnPayCourse;
 		private Button btnSendTicket;
 		private Button btnExit;

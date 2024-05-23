@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS postulants;
 DROP PROCEDURE IF EXISTS Login;
 DROP PROCEDURE IF EXISTS NewPostulant;
 
@@ -19,6 +20,8 @@ create table postulants(
 	LastName varchar(40),
 	DocumentType varchar(20),
 	Document int,
+    InscriptionDate date,
+    ExpirationDate date,
 	constraint pk_postulant primary key(ID)
 );
 
