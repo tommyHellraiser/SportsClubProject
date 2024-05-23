@@ -39,9 +39,9 @@ namespace SportsClubProject.Forms
                 conn.Open();
 
                 MySqlDataReader reader = cm.ExecuteReader();
-                if(reader.HasRows) 
+                if (reader.HasRows)
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         int row = dtgvListMemb.Rows.Add();
                         dtgvListMemb.Rows[row].Cells[0].Value = reader.GetInt32(0);
@@ -70,5 +70,7 @@ namespace SportsClubProject.Forms
                 }
             }
         }
+
+
     }
 }

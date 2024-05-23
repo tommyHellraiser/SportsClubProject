@@ -36,23 +36,25 @@
             cellNDoc = new DataGridViewTextBoxColumn();
             cellDateInscription = new DataGridViewTextBoxColumn();
             cellDateExp = new DataGridViewTextBoxColumn();
+            lblListMemb = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgvListMemb).BeginInit();
             SuspendLayout();
             // 
             // dtgvListMemb
             // 
+            dtgvListMemb.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvListMemb.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtgvListMemb.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellNMember, cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp });
             dtgvListMemb.Location = new Point(12, 96);
             dtgvListMemb.Name = "dtgvListMemb";
-            dtgvListMemb.Size = new Size(817, 150);
+            dtgvListMemb.Size = new Size(817, 211);
             dtgvListMemb.TabIndex = 0;
             // 
             // cellNMember
             // 
             cellNMember.HeaderText = "NUM. DE SOCIO";
             cellNMember.Name = "cellNMember";
-            cellNMember.Width = 120;
             // 
             // cellName
             // 
@@ -68,13 +70,11 @@
             // 
             cellType.HeaderText = "TIPO DE DOC.";
             cellType.Name = "cellType";
-            cellType.Width = 110;
             // 
             // cellNDoc
             // 
             cellNDoc.HeaderText = "NUM. DE DOC.";
             cellNDoc.Name = "cellNDoc";
-            cellNDoc.Width = 120;
             // 
             // cellDateInscription
             // 
@@ -85,7 +85,17 @@
             // 
             cellDateExp.HeaderText = "F. VENCIMIENTO";
             cellDateExp.Name = "cellDateExp";
-            cellDateExp.Width = 120;
+            // 
+            // lblListMemb
+            // 
+            lblListMemb.AutoSize = true;
+            lblListMemb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblListMemb.Location = new Point(309, 29);
+            lblListMemb.Name = "lblListMemb";
+            lblListMemb.Size = new Size(238, 21);
+            lblListMemb.TabIndex = 1;
+            lblListMemb.Text = "LISTADO DE SOCIOS DEL CLUB";
+            lblListMemb.TextAlign = ContentAlignment.TopCenter;
             // 
             // ListMembers
             // 
@@ -93,12 +103,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 192, 192);
             ClientSize = new Size(841, 450);
+            Controls.Add(lblListMemb);
             Controls.Add(dtgvListMemb);
             Name = "ListMembers";
             Text = "ListMembers";
             Load += ListMembers_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvListMemb).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -111,5 +123,6 @@
         private DataGridViewTextBoxColumn cellNDoc;
         private DataGridViewTextBoxColumn cellDateInscription;
         private DataGridViewTextBoxColumn cellDateExp;
+        private Label lblListMemb;
     }
 }
