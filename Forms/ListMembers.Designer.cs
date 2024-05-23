@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dtgvListMemb = new DataGridView();
+            cellNMember = new DataGridViewTextBoxColumn();
             cellName = new DataGridViewTextBoxColumn();
             cellLastName = new DataGridViewTextBoxColumn();
             cellType = new DataGridViewTextBoxColumn();
@@ -41,11 +42,17 @@
             // dtgvListMemb
             // 
             dtgvListMemb.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp });
-            dtgvListMemb.Location = new Point(58, 96);
+            dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellNMember, cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp });
+            dtgvListMemb.Location = new Point(12, 96);
             dtgvListMemb.Name = "dtgvListMemb";
-            dtgvListMemb.Size = new Size(694, 150);
+            dtgvListMemb.Size = new Size(817, 150);
             dtgvListMemb.TabIndex = 0;
+            // 
+            // cellNMember
+            // 
+            cellNMember.HeaderText = "NUM. DE SOCIO";
+            cellNMember.Name = "cellNMember";
+            cellNMember.Width = 120;
             // 
             // cellName
             // 
@@ -85,7 +92,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 192, 192);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(841, 450);
             Controls.Add(dtgvListMemb);
             Name = "ListMembers";
             Text = "ListMembers";
@@ -97,6 +104,7 @@
         #endregion
 
         private DataGridView dtgvListMemb;
+        private DataGridViewTextBoxColumn cellNMember;
         private DataGridViewTextBoxColumn cellName;
         private DataGridViewTextBoxColumn cellLastName;
         private DataGridViewTextBoxColumn cellType;

@@ -32,7 +32,7 @@ namespace SportsClubProject.Forms
             {
                 string query;
                 conn = Connection.GetInstance().CreateConnection();
-                query = "select FirstName, LastName, DocumentType, Document, " +
+                query = "select ID, FirstName, LastName, DocumentType, Document, " +
                     "InscriptionDate, ExpirationDate from postulants";
                 MySqlCommand cm = new MySqlCommand(query, conn);
                 cm.CommandType = CommandType.Text;
@@ -44,12 +44,13 @@ namespace SportsClubProject.Forms
                     while(reader.Read())
                     {
                         int row = dtgvListMemb.Rows.Add();
-                        dtgvListMemb.Rows[row].Cells[0].Value = reader.GetString(0);
+                        dtgvListMemb.Rows[row].Cells[0].Value = reader.GetInt32(0);
                         dtgvListMemb.Rows[row].Cells[1].Value = reader.GetString(1);
                         dtgvListMemb.Rows[row].Cells[2].Value = reader.GetString(2);
-                        dtgvListMemb.Rows[row].Cells[3].Value = reader.GetInt32(3).ToString();
-                        dtgvListMemb.Rows[row].Cells[4].Value = reader.GetDateTime(4).ToString("dd-MM-yyyy");
+                        dtgvListMemb.Rows[row].Cells[3].Value = reader.GetString(3);
+                        dtgvListMemb.Rows[row].Cells[4].Value = reader.GetInt32(4);
                         dtgvListMemb.Rows[row].Cells[5].Value = reader.GetDateTime(5).ToString("dd-MM-yyyy");
+                        dtgvListMemb.Rows[row].Cells[6].Value = reader.GetDateTime(6).ToString("dd-MM-yyyy");
                     }
                 }
                 else
