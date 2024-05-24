@@ -62,9 +62,10 @@ namespace SportsClubProject
             inscription.ShowDialog();
         }
 
-        private void btnAssignCourse_Click(object sender, EventArgs e)
+        private void btnListMembers_Click(object sender, EventArgs e)
         {
-            //	TODO create assign course form and show it
+            ListMembers listMembers = new ListMembers();
+            listMembers.ShowDialog();
         }
 
         private void btnPayCourse_Click(object sender, EventArgs e)
