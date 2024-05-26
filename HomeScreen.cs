@@ -70,7 +70,8 @@ namespace SportsClubProject
 
         private void btnPayCourse_Click(object sender, EventArgs e)
         {
-            //	TODO create pay course form and show it
+            MakePayment makePayment = new MakePayment();
+            makePayment.ShowDialog();
         }
 
         private void btnSendTicket_Click(object sender, EventArgs e)

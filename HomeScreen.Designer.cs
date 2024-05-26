@@ -76,7 +76,7 @@
             btnPayCourse.Name = "btnPayCourse";
             btnPayCourse.Size = new Size(280, 89);
             btnPayCourse.TabIndex = 3;
-            btnPayCourse.Text = "Pagar Curso";
+            btnPayCourse.Text = "Realizar pago";
             btnPayCourse.UseVisualStyleBackColor = true;
             btnPayCourse.Click += btnPayCourse_Click;
             // 
