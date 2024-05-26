@@ -16,5 +16,19 @@ namespace SportsClubProject.Forms
         {
             InitializeComponent();
         }
+
+        public string? fullName;
+        public string? formPay;
+        public float amount;
+        public DateTime date;
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bill_Load(object sender, EventArgs e)
+        {
+            //traer con query amount de payment
+        }
     }
 }

@@ -25,6 +25,14 @@ create table postulants(
 	constraint pk_postulant primary key(ID)
 );
 
+create table payment(
+	ID int auto_increment,
+    IdPostulant int,
+    amount float default 22000,
+    constraint pk_payment primary key(ID),
+    constraint fk_IdPostulant foreign key(IdPostulant) references postulants(ID)
+);
+
 CREATE TABLE users(
 	ID int AUTO_INCREMENT,
 	Username varchar (20) UNIQUE KEY NOT NULL,

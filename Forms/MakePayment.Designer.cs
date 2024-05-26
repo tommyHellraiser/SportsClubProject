@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             lblListMemb = new Label();
-            textBox1 = new TextBox();
+            txtNInsc = new TextBox();
             btnPay = new Button();
             btnBill = new Button();
             groupBox1 = new GroupBox();
             radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            rbtnCash = new RadioButton();
             btnBack = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -50,12 +50,12 @@
             lblListMemb.Text = "Ingrese numero de inscripción";
             lblListMemb.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox1
+            // txtNInsc
             // 
-            textBox1.Location = new Point(105, 99);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(180, 23);
-            textBox1.TabIndex = 3;
+            txtNInsc.Location = new Point(105, 99);
+            txtNInsc.Name = "txtNInsc";
+            txtNInsc.Size = new Size(180, 23);
+            txtNInsc.TabIndex = 3;
             // 
             // btnPay
             // 
@@ -66,6 +66,7 @@
             btnPay.TabIndex = 5;
             btnPay.Text = "PAGAR";
             btnPay.UseVisualStyleBackColor = true;
+            btnPay.Click += btnPay_Click;
             // 
             // btnBill
             // 
@@ -82,7 +83,7 @@
             // 
             groupBox1.BackColor = Color.DarkOrange;
             groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(rbtnCash);
             groupBox1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
             groupBox1.Location = new Point(455, 51);
             groupBox1.Name = "groupBox1";
@@ -102,16 +103,16 @@
             radioButton2.Text = "Tarjeta";
             radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbtnCash
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(6, 33);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(81, 20);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Efectivo";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtnCash.AutoSize = true;
+            rbtnCash.Location = new Point(6, 33);
+            rbtnCash.Name = "rbtnCash";
+            rbtnCash.Size = new Size(81, 20);
+            rbtnCash.TabIndex = 0;
+            rbtnCash.TabStop = true;
+            rbtnCash.Text = "Efectivo";
+            rbtnCash.UseVisualStyleBackColor = true;
             // 
             // btnBack
             // 
@@ -134,7 +135,7 @@
             Controls.Add(groupBox1);
             Controls.Add(btnBill);
             Controls.Add(btnPay);
-            Controls.Add(textBox1);
+            Controls.Add(txtNInsc);
             Controls.Add(lblListMemb);
             Name = "MakePayment";
             Text = "MakePayment";
@@ -147,12 +148,12 @@
         #endregion
 
         private Label lblListMemb;
-        private TextBox textBox1;
+        private TextBox txtNInsc;
         private Button btnPay;
         private Button btnBill;
         private GroupBox groupBox1;
         private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton rbtnCash;
         private Button btnBack;
     }
 }
