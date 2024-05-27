@@ -28,7 +28,7 @@ create table postulants(
 create table payment(
 	ID int auto_increment,
     IdPostulant int,
-    amount float default 22000,
+    amount float,
     constraint pk_payment primary key(ID),
     constraint fk_IdPostulant foreign key(IdPostulant) references postulants(ID)
 );

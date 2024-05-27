@@ -28,6 +28,8 @@ namespace SportsClubProject.Forms
 
         private void btnBill_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            bill.TopMost = true;
             bill.Show();
         }
 
@@ -36,6 +38,11 @@ namespace SportsClubProject.Forms
             MySqlConnection conn = new MySqlConnection();
             try
             {
+                if (string.IsNullOrWhiteSpace(txtNInsc.Text) || string.IsNullOrWhiteSpace(txtAmount.Text) || (!rbtnCash.Checked && !rbtnCard.Checked))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos y seleccione una forma de pago.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 string query;
                 conn = Connection.GetInstance().CreateConnection();
                 query = "select ID, concat(FirstName, ' ', LastName), InscriptionDate " +
@@ -49,19 +56,26 @@ namespace SportsClubProject.Forms
                     reader.Read();
                     bill.fullName = reader.GetString(1);
                     bill.date = reader.GetDateTime(2);
-                    if(rbtnCash.Checked == true)
+                    float.TryParse(txtAmount.Text, out float amount);
+                    if (rbtnCash.Checked == true)
                     {
                         bill.formPay = "Efectivo";
-                        bill.amount = (float)(bill.amount * 0.90);
+                        bill.amount = amount * 0.90f;
                     }
                     else
                     {
                         bill.formPay = "Tarjeta";
+                        bill.amount = amount;
                     }
-                    //btnComprobante.Enabled = true;
-                    query = $"INSERT INTO payment(IdPostulant) VALUES ({txtNInsc.Text})";
+                    reader.Close();
+
+                    query = "INSERT INTO payment(IdPostulant, amount) " +
+                        $"VALUES ({txtNInsc.Text}, {bill.amount})";
                     MySqlCommand insertCommand = new MySqlCommand(query, conn);
                     insertCommand.ExecuteNonQuery();
+                    MessageBox.Show($"Se registro con exito el pago del socio Nro {txtNInsc.Text}");
+
+                    btnBill.Enabled = true;
                 }
                 else
                 {
