@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using SportsClubProject.Classes;
+using SportsClubProject.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +23,7 @@ namespace SportsClubProject.Forms
 
         public string? fullName;
         public string? formPay;
+        public int postulantId;
         public float amount;
         public DateTime date;
         private void btnPrint_Click(object sender, EventArgs e)
@@ -64,6 +68,19 @@ namespace SportsClubProject.Forms
             lblStartDate.Text = Convert.ToString(date);
             lblAmount.Text = Convert.ToString(amount);
             lblFormPay.Text = formPay;
+        }
+
+        internal static Bill FromPostulant(Postulant post, string paymentMethod, float amount)
+        {
+            Bill bill = new Bill();
+
+            bill.fullName = post.FirstName;
+            bill.formPay = paymentMethod;
+            bill.postulantId = post.ID;
+            bill.amount = amount;
+            bill.date = post.InscriptionDate;
+
+            return bill;
         }
     }
 }

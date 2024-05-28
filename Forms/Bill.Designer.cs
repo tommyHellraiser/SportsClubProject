@@ -71,8 +71,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Deportivo_Mandiyú;
-            pictureBox1.InitialImage = Properties.Resources.Deportivo_Mandiyú;
             pictureBox1.Location = new Point(260, 46);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(111, 92);

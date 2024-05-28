@@ -25,12 +25,12 @@ create table postulants(
 	constraint pk_postulant primary key(ID)
 );
 
-create table payment(
+create table payments(
 	ID int auto_increment,
-    IdPostulant int,
-    amount float,
+    PostulantID int,
+    Amount float,
     constraint pk_payment primary key(ID),
-    constraint fk_IdPostulant foreign key(IdPostulant) references postulants(ID)
+    constraint fk_PostulantID foreign key(PostulantID) references postulants(ID)
 );
 
 CREATE TABLE users(
@@ -53,3 +53,7 @@ VALUES
 ('paganeitor', 'Horacio', 'Pagani', '123456', '5465465', 'ml@jaja.com', '1988-12-30', 121),
 ('mlopez', 'Mariano', 'Lopez', '22112211', '11213456', 'the_marian@live.com', '1989-12-1', 121),
 ('tommy', 'Tomas', 'Ponce', '000000', '2615105315', 'hellraiser@this.com', '1994-11-25', 121);
+
+INSERT INTO postulants(FirstName, LastName, DocumentType, Document, InscriptionDate, ExpirationDate)
+VALUES('Facundo', 'Villarreal', 'DNI', 39416524, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
+('Tomas', 'Ponce', 'DNI', 38416584, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));

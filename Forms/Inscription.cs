@@ -37,10 +37,10 @@ namespace SportsClubProject.Forms
             {
                 string response;
                 Postulant newPostulant = new Postulant();
-                newPostulant.Name = txtName.Text;
+                newPostulant.FirstName = txtName.Text;
                 newPostulant.LastName = txtLastName.Text;
-                newPostulant.Doc = Convert.ToInt32(txtDni.Text);
-                newPostulant.TDoc = cboType.Text;
+                newPostulant.DocumentType = cboType.Text;
+                newPostulant.Document = Convert.ToInt32(txtDni.Text);
 
                 NewPostulants postulants = new NewPostulants();
                 response = postulants.NewPostulant(newPostulant);

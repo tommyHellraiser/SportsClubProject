@@ -23,13 +23,13 @@ namespace SportsClubProject.Classes
                 sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("NewName", MySqlDbType.VarChar).Value =
-                newPostulant.Name;
+                newPostulant.FirstName;
                 command.Parameters.Add("NewLastName", MySqlDbType.VarChar).Value =
                 newPostulant.LastName;
                 command.Parameters.Add("NewDocumentType", MySqlDbType.VarChar).Value =
-                newPostulant.TDoc;
+                newPostulant.DocumentType;
                 command.Parameters.Add("NewDocument", MySqlDbType.Int32).Value =
-                newPostulant.Doc;
+                newPostulant.Document;
                 MySqlParameter response = new MySqlParameter();
                 response.ParameterName = "Response";
                 response.MySqlDbType = MySqlDbType.Int32;
