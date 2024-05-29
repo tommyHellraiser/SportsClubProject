@@ -74,7 +74,7 @@ namespace SportsClubProject.Forms
         {
             Bill bill = new Bill();
 
-            bill.fullName = post.FirstName;
+            bill.fullName = $"{post.FirstName} {post.LastName}";
             bill.formPay = paymentMethod;
             bill.postulantId = post.ID;
             bill.amount = amount;

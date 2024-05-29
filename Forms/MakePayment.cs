@@ -61,6 +61,7 @@ namespace SportsClubProject.Forms
 
                     //  Build a Bill from postulant data
                     Bill bill = Bill.FromPostulant(postulant, paymentMethod, amount);
+                    this.bill = bill;
 
                     //  Build payment from Bill
                     Payment payment = Payment.FromBill(bill);
