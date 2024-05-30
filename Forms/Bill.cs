@@ -64,7 +64,7 @@ namespace SportsClubProject.Forms
         private void Bill_Load(object sender, EventArgs e)
         {
             lblDateToday.Text = DateTime.UtcNow.ToShortDateString();
-            lblName.Text = fullName;
+            lblNameInBill.Text = fullName;
             lblStartDate.Text = Convert.ToString(date);
             lblAmount.Text = Convert.ToString(amount);
             lblFormPay.Text = formPay;

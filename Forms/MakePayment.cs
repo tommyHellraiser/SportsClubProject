@@ -16,7 +16,7 @@ namespace SportsClubProject.Forms
 {
     public partial class MakePayment : Form
     {
-        Bill bill = new Bill();
+        private Bill? bill;
         public MakePayment()
         {
             InitializeComponent();
@@ -29,6 +29,12 @@ namespace SportsClubProject.Forms
 
         private void btnBill_Click(object sender, EventArgs e)
         {
+            if (this.bill == null)
+            {
+                MessageBox.Show("No se pudo generar el comprobante de pago, contacte al administrador");
+                return;
+            }
+
             this.Hide();
             bill.TopMost = true;
             bill.Show();
@@ -60,8 +66,7 @@ namespace SportsClubProject.Forms
 					}
 
                     //  Build a Bill from postulant data
-                    Bill bill = Bill.FromPostulant(postulant, paymentMethod, amount);
-                    this.bill = bill;
+                    this.bill = Bill.FromPostulant(postulant, paymentMethod, amount);
 
                     //  Build payment from Bill
                     Payment payment = Payment.FromBill(bill);
