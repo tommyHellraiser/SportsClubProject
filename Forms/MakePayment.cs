@@ -44,49 +44,74 @@ namespace SportsClubProject.Forms
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtNInsc.Text) || string.IsNullOrWhiteSpace(txtAmount.Text) || (!rbtnCash.Checked && !rbtnCard.Checked))
+                string SucessMessage = "Se registro con exito el pago del ";
+
+				if (string.IsNullOrWhiteSpace(txtNInsc.Text) || string.IsNullOrWhiteSpace(txtAmount.Text) || (!rbtnCash.Checked && !rbtnCard.Checked))
                 {
                     MessageBox.Show("Por favor, complete todos los campos y seleccione una forma de pago.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 Postulant? postulant = Postulant.SelectFromDocument(Convert.ToInt32(txtNInsc.Text));
-                if (postulant != null)
-                {
-					float.TryParse(txtAmount.Text, out float amount);
-                    string paymentMethod;
-					if (rbtnCash.Checked == true)
-					{
-						paymentMethod = "Efectivo";
-						amount *= 0.90f;
-					}
-					else
-					{
-						paymentMethod = "Tarjeta";
-					}
 
-                    //  Build a Bill from postulant data
-                    this.bill = Bill.FromPostulant(postulant, paymentMethod, amount);
-
-                    //  Build payment from Bill
-                    Payment payment = Payment.FromBill(bill);
-
-                    if(payment.Insert())
-                    {
-						MessageBox.Show($"Se registro con exito el pago del socio Nro {txtNInsc.Text}");
-					}
-                    else
-                    {
-						MessageBox.Show($"No se pudo registrar el pago del socio Nro {txtNInsc.Text}\nContactese con el administrador");
-					}
-					
-					btnBill.Enabled = true;
+				float.TryParse(txtAmount.Text, out float amount);
+				string paymentMethod;
+				if (rbtnCash.Checked == true)
+				{
+					paymentMethod = "Efectivo";
+					amount *= 0.90f;
 				}
+				else
+				{
+					paymentMethod = "Tarjeta";
+				}
+
+				if (postulant == null)
+                {
+                    //  Popup non postulant form to insert guest(non postulant) data
+                    NonPostulantLog NonPostulantForm = new NonPostulantLog();
+                    NonPostulantForm.ShowDialog();
+
+                    if (NonPostulantForm.NonPostulant == null)
+                    {
+                        MessageBox.Show(
+                            "Se necesita registrar el ingreso al club, reintente..."
+                        );
+
+                        return;
+                    }
+
+                    this.bill = Bill.FromNonPostulant(NonPostulantForm.NonPostulant, paymentMethod, amount);
+                    SucessMessage += $"invitado con documento: {this.bill.document}";
+                }
                 else
                 {
-					MessageBox.Show("Número de inscripcion inexistente", "AVISO DEL SISTEMA",
-					MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //  Build a Bill from postulant data
+                    this.bill = Bill.FromPostulant(postulant, paymentMethod, amount);
+					SucessMessage += $"socio con documento: {this.bill.document}";
 				}
+
+				//  Build payment from Bill
+				Payment payment = Payment.FromBill(bill);
+
+				if (payment.Insert())
+				{
+					MessageBox.Show(SucessMessage);
+				}
+				else
+				{
+					MessageBox.Show($"No se pudo registrar el pago del socio Nro {txtNInsc.Text}\nContactese con el administrador");
+                    this.Close();
+				}
+
+				btnBill.Enabled = true;
+
+
+				
+    //            {
+				//	MessageBox.Show("Número de inscripcion inexistente", "AVISO DEL SISTEMA",
+				//	MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//}
             }
             catch (Exception ex)
             {

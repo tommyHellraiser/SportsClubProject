@@ -4,5 +4,6 @@
   "Database": "SportsClub",
   "DatabaseUser": "root",
   "DatabasePass": "",
-  "ResetDatabase": true
+  "ResetDatabase": true,
+  "DebugMode":  false
 }

@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SportsClubProject.Classes
 {
@@ -18,9 +20,43 @@ namespace SportsClubProject.Classes
         public int Document { get; set; }
         public DateTime InscriptionDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public bool IsActive { get; set; }
 
 
         #region Database methods
+
+        internal static List<Postulant> SelectAllForDisplay()
+        {
+			MySqlConnection conn = Connection.GetInstance().CreateConnection();
+			List<Postulant> postulant = new();
+
+			try
+			{
+				string query = "SELECT * FROM postulants WHERE IsActive = 1;";
+
+				conn.Open();
+				MySqlCommand command = new MySqlCommand(query, conn);
+
+				MySqlDataReader reader = command.ExecuteReader();
+
+				while (reader.Read())
+				{
+					postulant.Add(Postulant.PostulantFromReader(reader));
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw new InvalidOperationException($"Cannot execute select from postulants:\n{ex.Message}");
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+
+			return postulant;
+		}
 
         internal static Postulant? SelectFromDocument(int document)
         {
@@ -37,7 +73,7 @@ namespace SportsClubProject.Classes
 
 				MySqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader.Read())
                 {
                     postulant = Postulant.PostulantFromReader(reader);
                 }
@@ -60,7 +96,6 @@ namespace SportsClubProject.Classes
         {
             Postulant post = new Postulant();
 
-            reader.Read();
             post.ID = reader.GetInt16("ID");
             post.FirstName = reader.GetString("FirstName");
 			post.LastName = reader.GetString("LastName");
@@ -68,6 +103,7 @@ namespace SportsClubProject.Classes
             post.Document = reader.GetInt32("Document");
             post.InscriptionDate = reader.GetDateTime("InscriptionDate");
 			post.ExpirationDate = reader.GetDateTime("ExpirationDate");
+            post.IsActive = reader.GetBoolean("IsActive");
 
             return post;
 		}

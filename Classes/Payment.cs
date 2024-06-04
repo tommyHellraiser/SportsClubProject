@@ -12,7 +12,8 @@ namespace SportsClubProject.Classes
 	internal class Payment
 	{
 		internal int ID;
-		internal int postulantId;
+		internal int? postulantId;
+		internal int document;
 		internal float amount;
 
 		internal static Payment FromBill(Bill bill)
@@ -20,6 +21,7 @@ namespace SportsClubProject.Classes
 			Payment payment = new Payment();
 
 			payment.postulantId = bill.postulantId;
+			payment.document = bill.document;
 			payment.amount = bill.amount;
 
 			return payment;
@@ -31,11 +33,12 @@ namespace SportsClubProject.Classes
 			int affectedRows = 0;
 			try
 			{
-				string query = "INSERT INTO payments(PostulantId, Amount) VALUES (@postulantId, @amount);";
+				string query = "INSERT INTO payments(PostulantId, DocumentNumber, Amount) VALUES (@postulantId, @document, @amount);";
 				conn.Open();
 
 				MySqlCommand insertCommand = new MySqlCommand(query, conn);
 				insertCommand.Parameters.AddWithValue("@postulantId", this.postulantId);
+				insertCommand.Parameters.AddWithValue("@document", this.document);
 				insertCommand.Parameters.AddWithValue("@amount", this.amount);
 				affectedRows = insertCommand.ExecuteNonQuery();
 			}

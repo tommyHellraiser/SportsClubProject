@@ -23,7 +23,8 @@ namespace SportsClubProject.Forms
 
         public string? fullName;
         public string? formPay;
-        public int postulantId;
+        public int? postulantId;
+        public int document;
         public float amount;
         public DateTime date;
         private void btnPrint_Click(object sender, EventArgs e)
@@ -77,10 +78,24 @@ namespace SportsClubProject.Forms
             bill.fullName = $"{post.FirstName} {post.LastName}";
             bill.formPay = paymentMethod;
             bill.postulantId = post.ID;
+            bill.document = post.Document;
             bill.amount = amount;
             bill.date = post.InscriptionDate;
 
             return bill;
         }
-    }
+
+		internal static Bill FromNonPostulant(NonPostulant post, string paymentMethod, float amount)
+		{
+			Bill bill = new Bill();
+
+			bill.fullName = $"{post.FirstName} {post.LastName}";
+			bill.formPay = paymentMethod;
+            bill.document = post.Document;
+			bill.amount = amount;
+			bill.date = (DateTime)post.VisitDateTime!;
+
+			return bill;
+		}
+	}
 }

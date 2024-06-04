@@ -47,9 +47,9 @@
 			lblListMemb.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
 			lblListMemb.Location = new Point(86, 35);
 			lblListMemb.Name = "lblListMemb";
-			lblListMemb.Size = new Size(220, 20);
+			lblListMemb.Size = new Size(225, 20);
 			lblListMemb.TabIndex = 2;
-			lblListMemb.Text = "Ingrese numero de inscripción";
+			lblListMemb.Text = "Ingrese numero de documento";
 			lblListMemb.TextAlign = ContentAlignment.TopCenter;
 			// 
 			// txtNInsc
