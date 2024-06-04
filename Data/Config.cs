@@ -16,6 +16,7 @@ namespace SportsClubProject.Data
 		internal static string? User;
 		internal static string? Pass;
 		internal static bool ResetDatabase;
+		internal static bool DebugMode;
 
 		public class JsonConfig
 		{
@@ -25,8 +26,9 @@ namespace SportsClubProject.Data
 			public string? DatabaseUser { get; set; }
 			public string? DatabasePass { get; set; }
 			public bool? ResetDatabase { get; set; }
+			public bool? DebugMode { get; set; }
 
-			public JsonConfig(string? Server, string? Port, string? Database, string? DatabaseUser, string? DatabasePass, bool? ResetDatabase)
+			public JsonConfig(string? Server, string? Port, string? Database, string? DatabaseUser, string? DatabasePass, bool? ResetDatabase, bool? DebugMode)
 			{
 				this.Server = Server;
 				this.Port = Port;
@@ -34,6 +36,7 @@ namespace SportsClubProject.Data
 				this.DatabaseUser = DatabaseUser;
 				this.DatabasePass = DatabasePass;
 				this.ResetDatabase = ResetDatabase;
+				this.DebugMode = DebugMode;
 			}
 
 
@@ -44,7 +47,8 @@ namespace SportsClubProject.Data
 					|| this.Port == null || this.Port == "" 
 					|| this.Database == null || this.Database == ""
 					|| this.DatabaseUser == null || this.DatabaseUser == ""
-					|| this.ResetDatabase == null)
+					|| this.ResetDatabase == null
+					|| this.DebugMode == null)
 				{
 					return false;
 				}
@@ -80,6 +84,7 @@ namespace SportsClubProject.Data
 				Config.User = configuration.DatabaseUser;
 				Config.Pass = configuration.DatabasePass;
 				Config.ResetDatabase = (bool)configuration.ResetDatabase!;
+				Config.DebugMode = (bool)configuration.DebugMode!;
 			}
 		}
 
@@ -91,7 +96,8 @@ namespace SportsClubProject.Data
 				Config.Database!,
 				Config.User!,
 				Config.Pass!,
-				Config.ResetDatabase
+				Config.ResetDatabase,
+				Config.DebugMode
 			);
 			
 			using StreamWriter writer = new StreamWriter("../../../Config/config.json");

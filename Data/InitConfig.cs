@@ -19,6 +19,11 @@ namespace SportsClubProject.Data
 				if (Config.ResetDatabase)
 				{
 					Connection.ResetDatabase();
+				}
+
+				//	Change ResetDatabase configuratio to false after executing only if DebugMode is disabled
+				if (!Config.DebugMode)
+				{
 					Config.ResetDatabase = false;
 					Config.WriteToJson();
 				}

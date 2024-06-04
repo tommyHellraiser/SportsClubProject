@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SportsClubProject.Classes;
 using SportsClubProject.Data;
 using System;
 using System.Collections.Generic;
@@ -28,39 +29,33 @@ namespace SportsClubProject.Forms
         private void LoadGrid()
         {
             MySqlConnection conn = new MySqlConnection();
-            try
-            {
-                string query;
-                conn = Connection.GetInstance().CreateConnection();
-                query = "select ID, FirstName, LastName, DocumentType, Document, " +
-                    "InscriptionDate, ExpirationDate from postulants";
-                MySqlCommand cm = new MySqlCommand(query, conn);
-                cm.CommandType = CommandType.Text;
-                conn.Open();
+			try
+			{
+                List<Postulant> postulants = Postulant.SelectAllForDisplay();
 
-                MySqlDataReader reader = cm.ExecuteReader();
-                if (reader.HasRows)
+                if (postulants.Count == 0)
                 {
-                    while (reader.Read())
-                    {
-                        int row = dtgvListMemb.Rows.Add();
-                        dtgvListMemb.Rows[row].Cells[0].Value = reader.GetInt32(0);
-                        dtgvListMemb.Rows[row].Cells[1].Value = reader.GetString(1);
-                        dtgvListMemb.Rows[row].Cells[2].Value = reader.GetString(2);
-                        dtgvListMemb.Rows[row].Cells[3].Value = reader.GetString(3);
-                        dtgvListMemb.Rows[row].Cells[4].Value = reader.GetInt32(4);
-                        dtgvListMemb.Rows[row].Cells[5].Value = reader.GetDateTime(5).ToString("dd-MM-yyyy");
-                        dtgvListMemb.Rows[row].Cells[6].Value = reader.GetDateTime(6).ToString("dd-MM-yyyy");
-                    }
-                }
-                else
+					MessageBox.Show("No hay usuarios inscriptos");
+                    return;
+				}
+
+                foreach (Postulant postulant in postulants)
                 {
-                    MessageBox.Show("No hay usuarios inscriptos");
-                }
+					int row = dtgvListMemb.Rows.Add();
+					dtgvListMemb.Rows[row].Cells[0].Value = postulant.ID;
+					dtgvListMemb.Rows[row].Cells[1].Value = postulant.FirstName;
+					dtgvListMemb.Rows[row].Cells[2].Value = postulant.LastName;
+					dtgvListMemb.Rows[row].Cells[3].Value = postulant.DocumentType;
+					dtgvListMemb.Rows[row].Cells[4].Value = postulant.Document;
+					dtgvListMemb.Rows[row].Cells[5].Value = postulant.InscriptionDate.ToString("dd-MM-yyyy");
+					dtgvListMemb.Rows[row].Cells[6].Value = postulant.ExpirationDate.ToString("dd-MM-yyyy");
+				}
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                this.Close();
+                return;
             }
             finally
             {

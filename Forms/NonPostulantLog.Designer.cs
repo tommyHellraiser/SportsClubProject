@@ -1,6 +1,6 @@
 ﻿namespace SportsClubProject.Forms
 {
-    partial class Inscription
+    partial class NonPostulantLog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inscription));
-			pictureBox1 = new PictureBox();
 			btnBack = new Button();
 			btnClean = new Button();
 			btnEnter = new Button();
@@ -37,27 +35,16 @@
 			txtName = new TextBox();
 			txtDni = new TextBox();
 			cboType = new ComboBox();
-			label6 = new Label();
-			label7 = new Label();
-			label8 = new Label();
-			label9 = new Label();
-			label10 = new Label();
-			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+			label5 = new Label();
+			label4 = new Label();
+			label3 = new Label();
+			label2 = new Label();
+			label1 = new Label();
 			SuspendLayout();
-			// 
-			// pictureBox1
-			// 
-			pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-			pictureBox1.Location = new Point(17, 77);
-			pictureBox1.Name = "pictureBox1";
-			pictureBox1.Size = new Size(218, 203);
-			pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-			pictureBox1.TabIndex = 25;
-			pictureBox1.TabStop = false;
 			// 
 			// btnBack
 			// 
-			btnBack.Location = new Point(684, 327);
+			btnBack.Location = new Point(390, 320);
 			btnBack.Name = "btnBack";
 			btnBack.Size = new Size(141, 36);
 			btnBack.TabIndex = 7;
@@ -67,7 +54,7 @@
 			// 
 			// btnClean
 			// 
-			btnClean.Location = new Point(515, 327);
+			btnClean.Location = new Point(221, 320);
 			btnClean.Name = "btnClean";
 			btnClean.Size = new Size(141, 36);
 			btnClean.TabIndex = 6;
@@ -77,7 +64,7 @@
 			// 
 			// btnEnter
 			// 
-			btnEnter.Location = new Point(337, 327);
+			btnEnter.Location = new Point(43, 320);
 			btnEnter.Name = "btnEnter";
 			btnEnter.Size = new Size(141, 36);
 			btnEnter.TabIndex = 5;
@@ -87,21 +74,21 @@
 			// 
 			// txtLastName
 			// 
-			txtLastName.Location = new Point(469, 145);
+			txtLastName.Location = new Point(175, 138);
 			txtLastName.Name = "txtLastName";
 			txtLastName.Size = new Size(247, 25);
 			txtLastName.TabIndex = 2;
 			// 
 			// txtName
 			// 
-			txtName.Location = new Point(469, 98);
+			txtName.Location = new Point(175, 91);
 			txtName.Name = "txtName";
 			txtName.Size = new Size(247, 25);
 			txtName.TabIndex = 1;
 			// 
 			// txtDni
 			// 
-			txtDni.Location = new Point(612, 217);
+			txtDni.Location = new Point(318, 210);
 			txtDni.Name = "txtDni";
 			txtDni.Size = new Size(180, 25);
 			txtDni.TabIndex = 4;
@@ -110,64 +97,63 @@
 			// 
 			cboType.FormattingEnabled = true;
 			cboType.Items.AddRange(new object[] { "DNI" });
-			cboType.Location = new Point(363, 217);
+			cboType.Location = new Point(69, 210);
 			cboType.Name = "cboType";
 			cboType.Size = new Size(138, 25);
 			cboType.TabIndex = 3;
 			// 
-			// label6
+			// label5
 			// 
-			label6.AutoSize = true;
-			label6.Location = new Point(562, 221);
-			label6.Name = "label6";
-			label6.Size = new Size(31, 17);
-			label6.TabIndex = 21;
-			label6.Text = "DNI";
+			label5.AutoSize = true;
+			label5.Location = new Point(268, 214);
+			label5.Name = "label5";
+			label5.Size = new Size(31, 17);
+			label5.TabIndex = 16;
+			label5.Text = "DNI";
 			// 
-			// label7
+			// label4
 			// 
-			label7.AutoSize = true;
-			label7.Location = new Point(313, 221);
-			label7.Name = "label7";
-			label7.Size = new Size(34, 17);
-			label7.TabIndex = 19;
-			label7.Text = "Tipo";
+			label4.AutoSize = true;
+			label4.Location = new Point(19, 214);
+			label4.Name = "label4";
+			label4.Size = new Size(34, 17);
+			label4.TabIndex = 14;
+			label4.Text = "Tipo";
 			// 
-			// label8
+			// label3
 			// 
-			label8.AutoSize = true;
-			label8.Location = new Point(381, 154);
-			label8.Name = "label8";
-			label8.Size = new Size(57, 17);
-			label8.TabIndex = 17;
-			label8.Text = "Apellido";
+			label3.AutoSize = true;
+			label3.Location = new Point(87, 147);
+			label3.Name = "label3";
+			label3.Size = new Size(57, 17);
+			label3.TabIndex = 12;
+			label3.Text = "Apellido";
 			// 
-			// label9
+			// label2
 			// 
-			label9.AutoSize = true;
-			label9.Location = new Point(381, 102);
-			label9.Name = "label9";
-			label9.Size = new Size(58, 17);
-			label9.TabIndex = 15;
-			label9.Text = "Nombre";
+			label2.AutoSize = true;
+			label2.Location = new Point(87, 95);
+			label2.Name = "label2";
+			label2.Size = new Size(58, 17);
+			label2.TabIndex = 10;
+			label2.Text = "Nombre";
 			// 
-			// label10
+			// label1
 			// 
-			label10.AutoSize = true;
-			label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-			label10.Location = new Point(349, 22);
-			label10.Name = "label10";
-			label10.Size = new Size(112, 21);
-			label10.TabIndex = 13;
-			label10.Text = "INSCRIPCIÓN";
+			label1.AutoSize = true;
+			label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+			label1.Location = new Point(210, 18);
+			label1.Name = "label1";
+			label1.Size = new Size(142, 21);
+			label1.TabIndex = 8;
+			label1.Text = "DATOS NO SOCIO";
 			// 
-			// Inscription
+			// NonPostulantLog
 			// 
 			AutoScaleDimensions = new SizeF(8F, 17F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.FromArgb(255, 128, 0);
-			ClientSize = new Size(850, 400);
-			Controls.Add(pictureBox1);
+			ClientSize = new Size(556, 377);
 			Controls.Add(btnBack);
 			Controls.Add(btnClean);
 			Controls.Add(btnEnter);
@@ -175,22 +161,20 @@
 			Controls.Add(txtName);
 			Controls.Add(txtDni);
 			Controls.Add(cboType);
-			Controls.Add(label6);
-			Controls.Add(label7);
-			Controls.Add(label8);
-			Controls.Add(label9);
-			Controls.Add(label10);
+			Controls.Add(label5);
+			Controls.Add(label4);
+			Controls.Add(label3);
+			Controls.Add(label2);
+			Controls.Add(label1);
 			Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-			Name = "Inscription";
-			Text = "Inscription";
-			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+			Name = "NonPostulantLog";
+			Text = "Log";
 			ResumeLayout(false);
 			PerformLayout();
 		}
 
 		#endregion
 
-		private PictureBox pictureBox1;
 		private Button btnBack;
 		private Button btnClean;
 		private Button btnEnter;
@@ -198,10 +182,10 @@
 		private TextBox txtName;
 		private TextBox txtDni;
 		private ComboBox cboType;
-		private Label label6;
-		private Label label7;
-		private Label label8;
-		private Label label9;
-		private Label label10;
+		private Label label5;
+		private Label label4;
+		private Label label3;
+		private Label label2;
+		private Label label1;
 	}
 }
