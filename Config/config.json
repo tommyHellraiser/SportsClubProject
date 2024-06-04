@@ -5,5 +5,5 @@
   "DatabaseUser": "root",
   "DatabasePass": "",
   "ResetDatabase": true,
-  "DebugMode":  false
+  "DebugMode": false
 }

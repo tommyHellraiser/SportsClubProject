@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS users(
 	CONSTRAINT userRoleID FOREIGN KEY(UserRole) REFERENCES user_roles(ID)
 );
 
-CREATE TABLE IF NOT EXISTS membership (
+CREATE TABLE IF NOT EXISTS memberships (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
 	PostulantID int NOT NULL,
-	ExpirationDate datetime NOT NULL,
+	ExpirationDate datetime DEFAULT NULL,
 	Amount float DEFAULT 0,
 	Paid tinyint(3) DEFAULT 0,
 	CONSTRAINT fk_membership_postulant_id FOREIGN KEY (PostulantID) REFERENCES postulants(ID)
@@ -81,6 +81,6 @@ INSERT INTO postulants(FirstName, LastName, DocumentType, Document, InscriptionD
 VALUES('Facundo', 'Villarreal', 'DNI', 39416524, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
 ('Tomas', 'Ponce', 'DNI', 38416584, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
 
-INSERT INTO membership(PostulantID, ExpirationDate, Amount)
+INSERT INTO memberships(PostulantID, ExpirationDate, Amount)
 VALUES (1, DATE_ADD(NOW(), INTERVAL 10 DAY), 150.0),
 (2, DATE_ADD(NOW(), INTERVAL 10 DAY), 180.0);

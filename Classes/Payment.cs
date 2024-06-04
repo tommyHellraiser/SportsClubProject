@@ -1,18 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using SportsClubProject.Data;
 using SportsClubProject.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SportsClubProject.Classes
 {
 	internal class Payment
 	{
 		internal int ID;
-		internal int? postulantId;
+		internal int? PostulantId;
 		internal int document;
 		internal float amount;
 
@@ -20,7 +15,7 @@ namespace SportsClubProject.Classes
 		{
 			Payment payment = new Payment();
 
-			payment.postulantId = bill.postulantId;
+			payment.PostulantId = bill.postulantId;
 			payment.document = bill.document;
 			payment.amount = bill.amount;
 
@@ -37,7 +32,7 @@ namespace SportsClubProject.Classes
 				conn.Open();
 
 				MySqlCommand insertCommand = new MySqlCommand(query, conn);
-				insertCommand.Parameters.AddWithValue("@postulantId", this.postulantId);
+				insertCommand.Parameters.AddWithValue("@postulantId", this.PostulantId);
 				insertCommand.Parameters.AddWithValue("@document", this.document);
 				insertCommand.Parameters.AddWithValue("@amount", this.amount);
 				affectedRows = insertCommand.ExecuteNonQuery();

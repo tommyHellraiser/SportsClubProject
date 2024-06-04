@@ -1,16 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using SportsClubProject.Classes;
-using SportsClubProject.Data;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SportsClubProject.Classes;
 
 namespace SportsClubProject.Forms
 {
@@ -66,6 +54,7 @@ namespace SportsClubProject.Forms
 					paymentMethod = "Tarjeta";
 				}
 
+                //  No es socio
 				if (postulant == null)
                 {
                     //  Popup non postulant form to insert guest(non postulant) data
@@ -84,7 +73,7 @@ namespace SportsClubProject.Forms
                     this.bill = Bill.FromNonPostulant(NonPostulantForm.NonPostulant, paymentMethod, amount);
                     SucessMessage += $"invitado con documento: {this.bill.document}";
                 }
-                else
+                else    // Si es socio
                 {
                     //  Build a Bill from postulant data
                     this.bill = Bill.FromPostulant(postulant, paymentMethod, amount);
@@ -94,28 +83,39 @@ namespace SportsClubProject.Forms
 				//  Build payment from Bill
 				Payment payment = Payment.FromBill(bill);
 
-				if (payment.Insert())
-				{
-					MessageBox.Show(SucessMessage);
-				}
-				else
+				if (!payment.Insert())
 				{
 					MessageBox.Show($"No se pudo registrar el pago del socio Nro {txtNInsc.Text}\nContactese con el administrador");
                     this.Close();
 				}
 
+                if (postulant != null) {
+                    Membership? membership = Membership.SelectFromPostulantID(postulant.ID);
+                    if(membership == null)
+                    {
+						MessageBox.Show($"No se pudo registrar el pago del socio Nro {txtNInsc.Text}\nContactese con el administrador");
+                        this.Close();
+                        return;
+					}
+
+                    bool updated = membership.UpdateFromPayment(this.bill.amount);
+
+					if (!updated)
+                    {
+						MessageBox.Show($"No se pudo registrar el pago del socio Nro {txtNInsc.Text}\nContactese con el administrador");
+						this.Close();
+						return;
+					}
+                }
+
+                //  Se pudo registrar el pago correctamente
+				MessageBox.Show(SucessMessage);
+
 				btnBill.Enabled = true;
-
-
-				
-    //            {
-				//	MessageBox.Show("Número de inscripcion inexistente", "AVISO DEL SISTEMA",
-				//	MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//}
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "MENSAJE DEL CATCH",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"Error registrando el pago: \n{ex.Message}", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }

@@ -55,7 +55,7 @@ namespace SportsClubProject.Classes
 			}
 			catch (Exception ex)
 			{
-				throw new InvalidOperationException($"Cannot execute select from postulants:\n{ex.Message}");
+				throw new InvalidOperationException($"Cannot insert new non postulant:\n{ex.Message}");
 			}
 			finally
 			{

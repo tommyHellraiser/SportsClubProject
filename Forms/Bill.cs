@@ -1,16 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using SportsClubProject.Classes;
-using SportsClubProject.Data;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using SportsClubProject.Classes;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SportsClubProject.Forms
 {
