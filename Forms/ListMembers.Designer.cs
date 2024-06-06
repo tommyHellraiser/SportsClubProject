@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dtgvListMemb = new DataGridView();
+            lblListMemb = new Label();
             cellNMember = new DataGridViewTextBoxColumn();
             cellName = new DataGridViewTextBoxColumn();
             cellLastName = new DataGridViewTextBoxColumn();
@@ -36,7 +37,8 @@
             cellNDoc = new DataGridViewTextBoxColumn();
             cellDateInscription = new DataGridViewTextBoxColumn();
             cellDateExp = new DataGridViewTextBoxColumn();
-            lblListMemb = new Label();
+            CellCert = new DataGridViewTextBoxColumn();
+            CellActive = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgvListMemb).BeginInit();
             SuspendLayout();
             // 
@@ -45,11 +47,22 @@
             dtgvListMemb.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvListMemb.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtgvListMemb.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellNMember, cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp });
+            dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellNMember, cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp, CellCert, CellActive });
             dtgvListMemb.Location = new Point(12, 96);
             dtgvListMemb.Name = "dtgvListMemb";
-            dtgvListMemb.Size = new Size(817, 211);
+            dtgvListMemb.Size = new Size(873, 211);
             dtgvListMemb.TabIndex = 0;
+            // 
+            // lblListMemb
+            // 
+            lblListMemb.AutoSize = true;
+            lblListMemb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblListMemb.Location = new Point(309, 29);
+            lblListMemb.Name = "lblListMemb";
+            lblListMemb.Size = new Size(238, 21);
+            lblListMemb.TabIndex = 1;
+            lblListMemb.Text = "LISTADO DE SOCIOS DEL CLUB";
+            lblListMemb.TextAlign = ContentAlignment.TopCenter;
             // 
             // cellNMember
             // 
@@ -86,23 +99,22 @@
             cellDateExp.HeaderText = "F. VENCIMIENTO";
             cellDateExp.Name = "cellDateExp";
             // 
-            // lblListMemb
+            // CellCert
             // 
-            lblListMemb.AutoSize = true;
-            lblListMemb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblListMemb.Location = new Point(309, 29);
-            lblListMemb.Name = "lblListMemb";
-            lblListMemb.Size = new Size(238, 21);
-            lblListMemb.TabIndex = 1;
-            lblListMemb.Text = "LISTADO DE SOCIOS DEL CLUB";
-            lblListMemb.TextAlign = ContentAlignment.TopCenter;
+            CellCert.HeaderText = "APTO FÍSICO";
+            CellCert.Name = "CellCert";
+            // 
+            // CellActive
+            // 
+            CellActive.HeaderText = "SOC. ACTIVO";
+            CellActive.Name = "CellActive";
             // 
             // ListMembers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 192, 192);
-            ClientSize = new Size(841, 450);
+            ClientSize = new Size(897, 450);
             Controls.Add(lblListMemb);
             Controls.Add(dtgvListMemb);
             Name = "ListMembers";
@@ -116,6 +128,7 @@
         #endregion
 
         private DataGridView dtgvListMemb;
+        private Label lblListMemb;
         private DataGridViewTextBoxColumn cellNMember;
         private DataGridViewTextBoxColumn cellName;
         private DataGridViewTextBoxColumn cellLastName;
@@ -123,6 +136,7 @@
         private DataGridViewTextBoxColumn cellNDoc;
         private DataGridViewTextBoxColumn cellDateInscription;
         private DataGridViewTextBoxColumn cellDateExp;
-        private Label lblListMemb;
+        private DataGridViewTextBoxColumn CellCert;
+        private DataGridViewTextBoxColumn CellActive;
     }
 }

@@ -20,6 +20,7 @@ namespace SportsClubProject.Classes
         public int Document { get; set; }
         public DateTime InscriptionDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public bool HealthCert {  get; set; }
         public bool IsActive { get; set; }
 
 
@@ -103,6 +104,7 @@ namespace SportsClubProject.Classes
             post.Document = reader.GetInt32("Document");
             post.InscriptionDate = reader.GetDateTime("InscriptionDate");
 			post.ExpirationDate = reader.GetDateTime("ExpirationDate");
+            post.HealthCert = reader.GetBoolean("HealthCert");
             post.IsActive = reader.GetBoolean("IsActive");
 
             return post;

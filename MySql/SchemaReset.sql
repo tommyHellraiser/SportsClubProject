@@ -24,6 +24,7 @@ create table IF NOT EXISTS postulants(
 	Document int UNIQUE KEY,
     InscriptionDate date,
     ExpirationDate date,
+	HealthCert tinyint(3) default 1,
 	IsActive tinyint(3) default 1,
 	constraint pk_postulant primary key(ID)
 );

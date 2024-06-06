@@ -35,21 +35,23 @@ namespace SportsClubProject.Forms
 
                 if (postulants.Count == 0)
                 {
-					MessageBox.Show("No hay usuarios inscriptos");
+					MessageBox.Show("No hay socios inscriptos");
                     return;
 				}
 
                 foreach (Postulant postulant in postulants)
                 {
-					int row = dtgvListMemb.Rows.Add();
-					dtgvListMemb.Rows[row].Cells[0].Value = postulant.ID;
-					dtgvListMemb.Rows[row].Cells[1].Value = postulant.FirstName;
-					dtgvListMemb.Rows[row].Cells[2].Value = postulant.LastName;
-					dtgvListMemb.Rows[row].Cells[3].Value = postulant.DocumentType;
-					dtgvListMemb.Rows[row].Cells[4].Value = postulant.Document;
-					dtgvListMemb.Rows[row].Cells[5].Value = postulant.InscriptionDate.ToString("dd-MM-yyyy");
-					dtgvListMemb.Rows[row].Cells[6].Value = postulant.ExpirationDate.ToString("dd-MM-yyyy");
-				}
+                    int row = dtgvListMemb.Rows.Add();
+                    dtgvListMemb.Rows[row].Cells[0].Value = postulant.ID;
+                    dtgvListMemb.Rows[row].Cells[1].Value = postulant.FirstName;
+                    dtgvListMemb.Rows[row].Cells[2].Value = postulant.LastName;
+                    dtgvListMemb.Rows[row].Cells[3].Value = postulant.DocumentType;
+                    dtgvListMemb.Rows[row].Cells[4].Value = postulant.Document;
+                    dtgvListMemb.Rows[row].Cells[5].Value = postulant.InscriptionDate.ToString("dd-MM-yyyy");
+                    dtgvListMemb.Rows[row].Cells[6].Value = postulant.ExpirationDate.ToString("dd-MM-yyyy");
+                    dtgvListMemb.Rows[row].Cells[7].Value = postulant.HealthCert ? "SI" : "NO";
+                    dtgvListMemb.Rows[row].Cells[8].Value = postulant.IsActive ? "SI" : "NO";
+                }
             }
             catch (Exception ex)
             {

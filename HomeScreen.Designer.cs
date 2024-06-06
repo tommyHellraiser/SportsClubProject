@@ -32,7 +32,7 @@
             btnSignUp = new Button();
             btnListMembers = new Button();
             btnPayCourse = new Button();
-            btnSendTicket = new Button();
+            btnMakeCard = new Button();
             btnExit = new Button();
             btnLogout = new Button();
             SuspendLayout();
@@ -80,16 +80,16 @@
             btnPayCourse.UseVisualStyleBackColor = true;
             btnPayCourse.Click += btnPayCourse_Click;
             // 
-            // btnSendTicket
+            // btnMakeCard
             // 
-            btnSendTicket.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnSendTicket.Location = new Point(428, 272);
-            btnSendTicket.Name = "btnSendTicket";
-            btnSendTicket.Size = new Size(280, 89);
-            btnSendTicket.TabIndex = 4;
-            btnSendTicket.Text = "Emitir Comprobante de Curso";
-            btnSendTicket.UseVisualStyleBackColor = true;
-            btnSendTicket.Click += btnSendTicket_Click;
+            btnMakeCard.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnMakeCard.Location = new Point(428, 272);
+            btnMakeCard.Name = "btnMakeCard";
+            btnMakeCard.Size = new Size(280, 89);
+            btnMakeCard.TabIndex = 4;
+            btnMakeCard.Text = "Emitir carnet de socio";
+            btnMakeCard.UseVisualStyleBackColor = true;
+            btnMakeCard.Click += btnSendTicket_Click;
             // 
             // btnExit
             // 
@@ -121,7 +121,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnLogout);
             Controls.Add(btnExit);
-            Controls.Add(btnSendTicket);
+            Controls.Add(btnMakeCard);
             Controls.Add(btnPayCourse);
             Controls.Add(btnListMembers);
             Controls.Add(btnSignUp);
@@ -138,7 +138,7 @@
 		private Button btnSignUp;
 		private Button btnListMembers;
 		private Button btnPayCourse;
-		private Button btnSendTicket;
+		private Button btnMakeCard;
 		private Button btnExit;
 		private Button btnLogout;
 	}

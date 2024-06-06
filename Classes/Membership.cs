@@ -22,7 +22,7 @@ namespace SportsClubProject.Classes
 
 		internal bool UpdateFromPayment(float amount)
 		{
-			this.ExpirationDate = DateTime.Now.AddDays(10);
+			this.ExpirationDate = DateTime.Now.AddDays(30);
 			this.Amount = amount;
 			this.Paid = true;
 

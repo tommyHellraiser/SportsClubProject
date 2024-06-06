@@ -19,7 +19,7 @@ namespace SportsClubProject.Forms
             try
             {
 				if (txtName.Text == "" || txtLastName.Text == "" ||
-				txtDni.Text == "" || cboType.Text == "")
+				txtDni.Text == "" || cboType.Text == "" || !ckBoxHealth.Checked)
 				{
 					MessageBox.Show("Debe completar datos requeridos",
 					"AVISO DEL SISTEMA", MessageBoxButtons.OK,
