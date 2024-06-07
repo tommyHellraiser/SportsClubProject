@@ -89,7 +89,7 @@
             btnMakeCard.TabIndex = 4;
             btnMakeCard.Text = "Emitir carnet de socio";
             btnMakeCard.UseVisualStyleBackColor = true;
-            btnMakeCard.Click += btnSendTicket_Click;
+            btnMakeCard.Click += btnMakeCard_Click;
             // 
             // btnExit
             // 

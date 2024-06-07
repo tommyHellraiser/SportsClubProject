@@ -25,7 +25,7 @@ create table IF NOT EXISTS postulants(
     InscriptionDate date,
     ExpirationDate date,
 	HealthCert tinyint(3) default 1,
-	IsActive tinyint(3) default 1,
+	IsActive tinyint(3) default 0,
 	constraint pk_postulant primary key(ID)
 );
 
@@ -46,6 +46,15 @@ create table IF NOT EXISTS payments(
     Amount float,
     constraint pk_payment primary key(ID),
     constraint fk_PostulantID foreign key(PostulantID) references postulants(ID)
+);
+
+create table IF NOT EXISTS cards(
+	ID int auto_increment,
+	PostulantID int NULL,
+	CardDate date,
+    ExpirationCardDate date,
+	constraint pk_card primary key(ID),
+    constraint fk_PosID foreign key(PostulantID) references postulants(ID)
 );
 
 CREATE TABLE IF NOT EXISTS users(
@@ -79,9 +88,9 @@ VALUES
 ('tommy', 'Tomas', 'Ponce', '000000', '2615105315', 'hellraiser@this.com', '1994-11-25', 121);
 
 INSERT INTO postulants(FirstName, LastName, DocumentType, Document, InscriptionDate, ExpirationDate)
-VALUES('Facundo', 'Villarreal', 'DNI', 39416524, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
-('Tomas', 'Ponce', 'DNI', 38416584, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
+VALUES('Facundo', 'Villarreal', 'DNI', 39416524, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+('Tomas', 'Ponce', 'DNI', 38416584, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY));
 
 INSERT INTO memberships(PostulantID, ExpirationDate, Amount)
-VALUES (1, DATE_ADD(NOW(), INTERVAL 10 DAY), 150.0),
-(2, DATE_ADD(NOW(), INTERVAL 10 DAY), 180.0);
+VALUES (1, DATE_ADD(NOW(), INTERVAL 30 DAY), 150.0),
+(2, DATE_ADD(NOW(), INTERVAL 30 DAY), 180.0);

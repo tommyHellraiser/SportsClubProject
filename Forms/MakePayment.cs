@@ -54,8 +54,8 @@ namespace SportsClubProject.Forms
 					paymentMethod = "Tarjeta";
 				}
 
-                //  No es socio
-				if (postulant == null)
+                //  If the member is not registered
+                if (postulant == null)
                 {
                     //  Popup non postulant form to insert guest(non postulant) data
                     NonPostulantLog NonPostulantForm = new NonPostulantLog();
@@ -73,8 +73,11 @@ namespace SportsClubProject.Forms
                     this.bill = Bill.FromNonPostulant(NonPostulantForm.NonPostulant, paymentMethod, amount);
                     SucessMessage += $"invitado con documento: {this.bill.document}";
                 }
-                else    // Si es socio
+                else    // If the member is registered
                 {
+                    // Update postulant, isActive = true
+                    postulant.Update();
+
                     //  Build a Bill from postulant data
                     this.bill = Bill.FromPostulant(postulant, paymentMethod, amount);
 					SucessMessage += $"socio con documento: {this.bill.document}";
@@ -108,8 +111,8 @@ namespace SportsClubProject.Forms
 					}
                 }
 
-                //  Se pudo registrar el pago correctamente
-				MessageBox.Show(SucessMessage);
+                //  Payment was registered correctly
+                MessageBox.Show(SucessMessage);
 
 				btnBill.Enabled = true;
             }

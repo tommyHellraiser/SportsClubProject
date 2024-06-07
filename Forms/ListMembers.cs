@@ -50,7 +50,12 @@ namespace SportsClubProject.Forms
                     dtgvListMemb.Rows[row].Cells[5].Value = postulant.InscriptionDate.ToString("dd-MM-yyyy");
                     dtgvListMemb.Rows[row].Cells[6].Value = postulant.ExpirationDate.ToString("dd-MM-yyyy");
                     dtgvListMemb.Rows[row].Cells[7].Value = postulant.HealthCert ? "SI" : "NO";
-                    dtgvListMemb.Rows[row].Cells[8].Value = postulant.IsActive ? "SI" : "NO";
+                    dtgvListMemb.Rows[row].Cells[8].Value = postulant.IsActive ? "ACTIVO" : "INACTIVO";
+
+                    if (!postulant.IsActive)
+                    {
+                        dtgvListMemb.Rows[row].DefaultCellStyle.BackColor = Color.Yellow;
+                    }
                 }
             }
             catch (Exception ex)

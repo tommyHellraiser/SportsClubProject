@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dtgvListMemb = new DataGridView();
-            lblListMemb = new Label();
             cellNMember = new DataGridViewTextBoxColumn();
             cellName = new DataGridViewTextBoxColumn();
             cellLastName = new DataGridViewTextBoxColumn();
@@ -39,6 +39,7 @@
             cellDateExp = new DataGridViewTextBoxColumn();
             CellCert = new DataGridViewTextBoxColumn();
             CellActive = new DataGridViewTextBoxColumn();
+            lblListMemb = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgvListMemb).BeginInit();
             SuspendLayout();
             // 
@@ -46,23 +47,20 @@
             // 
             dtgvListMemb.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvListMemb.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgvListMemb.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgvListMemb.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvListMemb.Columns.AddRange(new DataGridViewColumn[] { cellNMember, cellName, cellLastName, cellType, cellNDoc, cellDateInscription, cellDateExp, CellCert, CellActive });
             dtgvListMemb.Location = new Point(12, 96);
             dtgvListMemb.Name = "dtgvListMemb";
             dtgvListMemb.Size = new Size(873, 211);
             dtgvListMemb.TabIndex = 0;
-            // 
-            // lblListMemb
-            // 
-            lblListMemb.AutoSize = true;
-            lblListMemb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblListMemb.Location = new Point(309, 29);
-            lblListMemb.Name = "lblListMemb";
-            lblListMemb.Size = new Size(238, 21);
-            lblListMemb.TabIndex = 1;
-            lblListMemb.Text = "LISTADO DE SOCIOS DEL CLUB";
-            lblListMemb.TextAlign = ContentAlignment.TopCenter;
             // 
             // cellNMember
             // 
@@ -106,8 +104,19 @@
             // 
             // CellActive
             // 
-            CellActive.HeaderText = "SOC. ACTIVO";
+            CellActive.HeaderText = "ESTADO";
             CellActive.Name = "CellActive";
+            // 
+            // lblListMemb
+            // 
+            lblListMemb.AutoSize = true;
+            lblListMemb.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblListMemb.Location = new Point(309, 29);
+            lblListMemb.Name = "lblListMemb";
+            lblListMemb.Size = new Size(238, 21);
+            lblListMemb.TabIndex = 1;
+            lblListMemb.Text = "LISTADO DE SOCIOS DEL CLUB";
+            lblListMemb.TextAlign = ContentAlignment.TopCenter;
             // 
             // ListMembers
             // 

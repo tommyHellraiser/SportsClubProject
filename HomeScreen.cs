@@ -74,9 +74,10 @@ namespace SportsClubProject
             makePayment.ShowDialog();
         }
 
-        private void btnSendTicket_Click(object sender, EventArgs e)
+        private void btnMakeCard_Click(object sender, EventArgs e)
         {
-            //	TODO create send ticket form and show it
+            DocInput docInput = new DocInput();
+            docInput.ShowDialog();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -87,5 +88,6 @@ namespace SportsClubProject
         }
 
         #endregion
+
     }
 }

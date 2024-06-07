@@ -33,7 +33,7 @@ namespace SportsClubProject.Classes
 
 			try
 			{
-				string query = "SELECT * FROM postulants WHERE IsActive = 1;";
+				string query = "SELECT * FROM postulants;";
 
 				conn.Open();
 				MySqlCommand command = new MySqlCommand(query, conn);
@@ -109,6 +109,37 @@ namespace SportsClubProject.Classes
 
             return post;
 		}
+
+        internal bool Update()
+        {
+
+            MySqlConnection conn = Connection.GetInstance().CreateConnection();
+            int affected = 0;
+
+            try
+            {
+                string query = "UPDATE postulants SET isActive = 1 WHERE Document = @Document;";
+
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@Document", this.Document);
+
+                affected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Cannot update membership:\n{ex.Message}");
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return (affected > 0);
+        }
+
 
         #endregion
 
