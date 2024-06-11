@@ -22,30 +22,29 @@ namespace SportsClubProject.Forms
         {
             Postulant? postulant = Postulant.SelectFromDocument(Convert.ToInt32(txtDocN.Text));
 
-            if (postulant != null)
+            if (postulant == null)
             {
-                CardForm cardForm = new()
-                {
-                    name = postulant.FirstName,
-                    lastName = postulant.LastName,
-                    docType = postulant.DocumentType,
-                    document = postulant.Document,
-                    postulantId = postulant.ID
-                };
-
-                Card card = new Card(postulantID: postulant.ID, cardDate: DateTime.Now, 
-                    expirationCardDate: DateTime.Now.AddYears(1));
-
-                // Insert card data in db
-                card.Insert();
-
-                this.Hide();
-                cardForm.ShowDialog();
+				MessageBox.Show("El socio no esta inscripto, reintente");
+                return;
             }
-            else
-            {
-                MessageBox.Show("El socio no esta inscripto, reintente de nuevo");
-            }
-        }
+
+			CardForm cardForm = new()
+			{
+				name = postulant.FirstName,
+				lastName = postulant.LastName,
+				docType = postulant.DocumentType,
+				document = postulant.Document,
+				postulantId = postulant.ID
+			};
+
+			Card card = new Card(postulantID: postulant.ID, cardDate: DateTime.Now,
+				expirationCardDate: DateTime.Now.AddYears(1));
+
+			// Insert card data in db
+			card.Insert();
+
+			this.Hide();
+			cardForm.ShowDialog();
+		}
     }
 }

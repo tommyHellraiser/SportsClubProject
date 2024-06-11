@@ -16,7 +16,7 @@ namespace SportsClubProject.Data
 				Config.LoadFromJson();
 
 				//	Reset Config.ResetDatabase to false once db reset has been executed
-				if (Config.ResetDatabase)
+				if (Config.ResetDatabase || Config.DebugMode)
 				{
 					Connection.ResetDatabase();
 				}

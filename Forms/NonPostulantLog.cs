@@ -45,7 +45,8 @@ namespace SportsClubProject.Forms
 						Convert.ToInt32(txtDni.Text)
 					);
 					//  Insert non postulant into database
-					if (!NewNonPostulant.Insert())
+					bool inserted = NewNonPostulant.Insert();
+					if (!inserted)
 					{
 						MessageBox.Show(
 							"No se pudo guardar el registro de no socio, contacte al administrador"

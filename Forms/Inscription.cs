@@ -24,51 +24,56 @@ namespace SportsClubProject.Forms
 					MessageBox.Show("Debe completar datos requeridos",
 					"AVISO DEL SISTEMA", MessageBoxButtons.OK,
 					MessageBoxIcon.Error);
+
+					return;
 				}
-				else
+
+				string response;
+				Postulant newPostulant = new Postulant();
+				newPostulant.FirstName = txtName.Text;
+				newPostulant.LastName = txtLastName.Text;
+				newPostulant.DocumentType = cboType.Text;
+				newPostulant.Document = Convert.ToInt32(txtDni.Text);
+
+				NewPostulants postulants = new NewPostulants();
+				response = postulants.NewPostulant(newPostulant);
+				
+
+				if (!int.TryParse(response, out int code))
 				{
-					string response;
-					Postulant newPostulant = new Postulant();
-					newPostulant.FirstName = txtName.Text;
-					newPostulant.LastName = txtLastName.Text;
-					newPostulant.DocumentType = cboType.Text;
-					newPostulant.Document = Convert.ToInt32(txtDni.Text);
-
-					NewPostulants postulants = new NewPostulants();
-					response = postulants.NewPostulant(newPostulant);
-					bool isNumber = int.TryParse(response, out int code);
-					if (isNumber)
-					{
-						//  For code -1, postulant already exists. Retry with another Document
-						if (code == -1)
-						{
-							MessageBox.Show("POSTULANTE YA EXISTE", "AVISO DEL SISTEMA",
-							MessageBoxButtons.OK, MessageBoxIcon.Error);
-							return;
-						}
-
-						//	Get postulant's ID from database to create new membership
-						Postulant? postulant = Postulant.SelectFromDocument(newPostulant.Document);
-						if (postulant == null)
-						{
-							MessageBox.Show(
-								"Error finalizando la inscripcion, contacte al administrador"
-							);
-							this.Close();
-							return;
-						}
-
-						//  Create a membership and save it in database
-						Membership membership = Membership.FromPostulant(postulant);
-						membership.InsertNew();
-
-						MessageBox.Show("se almaceno con exito con el codigo Nro"
-							+ response, "AVISO DEL SISTEMA",
-						MessageBoxButtons.OK, MessageBoxIcon.Question);
-
-						this.Close();
-					}
+					MessageBox.Show("No se pudo crear el registro de socio!", "AVISO DEL SISTEMA",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
 				}
+
+				//  For code -1, postulant already exists. Retry with another Document
+				if (code == -1)
+				{
+					MessageBox.Show("POSTULANTE YA EXISTE", "AVISO DEL SISTEMA",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+
+				//	Get postulant's ID from database to create new membership
+				Postulant? postulant = Postulant.SelectFromDocument(newPostulant.Document);
+				if (postulant == null)
+				{
+					MessageBox.Show(
+						"Error finalizando la inscripcion, contacte al administrador"
+					);
+					this.Close();
+					return;
+				}
+
+				//  Create a membership and save it in database
+				Membership membership = Membership.FromPostulant(postulant);
+				membership.InsertNew();
+
+				MessageBox.Show("se almaceno con exito con el codigo Nro"
+					+ response, "AVISO DEL SISTEMA",
+				MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+				this.Close();
 			}
             catch(Exception ex)
             {

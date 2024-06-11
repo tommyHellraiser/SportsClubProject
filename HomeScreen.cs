@@ -57,7 +57,6 @@ namespace SportsClubProject
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            //	TODO create sign up form and show it
             Inscription inscription = new Inscription();
             inscription.ShowDialog();
         }
