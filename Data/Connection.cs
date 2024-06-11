@@ -16,6 +16,11 @@ namespace SportsClubProject.Data
         private string user;
         private string key;
         private static Connection? con = null;
+        
+        /// <summary>
+        /// Constructor for Connection. Reads the configuration from the static class Config and 
+        /// stores it in the current instance of the Connection class
+        /// </summary>
         private Connection()
 
         {
@@ -26,6 +31,11 @@ namespace SportsClubProject.Data
             this.key = "";
         }
 
+        /// <summary>
+        /// Starts a connection with a MySql database instance by reading the configuration fetched 
+        /// from the config.json file
+        /// </summary>
+        /// <returns></returns>
         public MySqlConnection CreateConnection()
         {
             MySqlConnection? newString = new MySqlConnection();
@@ -45,6 +55,11 @@ namespace SportsClubProject.Data
             }
             return newString;
         }
+
+        /// <summary>
+        /// Gets an instance of Connection, creates a new one if there was none.
+        /// </summary>
+        /// <returns></returns>
         public static Connection GetInstance()
         {
             if (con == null) 
@@ -54,6 +69,11 @@ namespace SportsClubProject.Data
             return con;
         }
 
+        /// <summary>
+        /// Executes the database reset queries by reading the corresponding schema_reset.sql 
+        /// and stored procedures files to leave the database ready to use and popuated
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
         internal static void ResetDatabase()
         {
             //  Fetch reset scripts

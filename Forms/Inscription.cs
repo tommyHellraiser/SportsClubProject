@@ -9,7 +9,9 @@ namespace SportsClubProject.Forms
             InitializeComponent();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+
+		#region Handlers
+		private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -95,5 +97,7 @@ namespace SportsClubProject.Forms
             cboType.Text = "";
             txtName.Focus();
         }
-    }
+
+		#endregion
+	}
 }

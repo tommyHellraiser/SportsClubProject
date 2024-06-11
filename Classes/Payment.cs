@@ -11,6 +11,13 @@ namespace SportsClubProject.Classes
 		internal int document;
 		internal float amount;
 
+		/// <summary>
+		/// Creates an instance of Payment from a Bill object
+		/// </summary>
+		/// <param name="bill"></param>
+		/// <returns>
+		/// The created instance of Payment class
+		/// </returns>
 		internal static Payment FromBill(Bill bill)
 		{
 			Payment payment = new Payment();
@@ -22,6 +29,13 @@ namespace SportsClubProject.Classes
 			return payment;
 		}
 
+		/// <summary>
+		/// Inserts an instance of Payment into database
+		/// </summary>
+		/// <returns>
+		/// True if insert was successful, false otherwise
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		internal bool Insert()
 		{
 			MySqlConnection conn = Connection.GetInstance().CreateConnection();

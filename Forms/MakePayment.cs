@@ -10,6 +10,8 @@ namespace SportsClubProject.Forms
             InitializeComponent();
         }
 
+        #region Handlers
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -121,5 +123,7 @@ namespace SportsClubProject.Forms
                 MessageBox.Show($"Error registrando el pago: \n{ex.Message}", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
+
+        #endregion
     }
 }

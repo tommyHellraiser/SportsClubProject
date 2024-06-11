@@ -39,7 +39,10 @@ namespace SportsClubProject.Data
 				this.DebugMode = DebugMode;
 			}
 
-
+			/// <summary>
+			///	Validates the configuration found in json file has an acceptable content
+			/// </summary>
+			/// <returns></returns>
 			internal bool IsConfigValid()
 			{
 				//	If any of the required fields are either null or false, return false (Config is not valid)
@@ -57,6 +60,11 @@ namespace SportsClubProject.Data
 			}
 		}
 
+		/// <summary>
+		///	Reads a configuration from a json file
+		/// </summary>
+		/// <exception cref="NullReferenceException"></exception>
+		/// <exception cref="ArgumentNullException"></exception>
 		internal static void LoadFromJson()
 		{
 			//	Attempt to load from file
@@ -88,6 +96,9 @@ namespace SportsClubProject.Data
 			}
 		}
 
+		/// <summary>
+		/// Writes the saved configuration in the static class Config into the json file it was initially read from
+		/// </summary>
 		internal static void WriteToJson()
 		{
 			JsonConfig configuration = new JsonConfig(

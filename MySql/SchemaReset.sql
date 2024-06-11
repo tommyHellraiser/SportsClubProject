@@ -1,3 +1,4 @@
+#--	Executes drop sentences
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS postulants;
@@ -5,7 +6,9 @@ DROP TABLE IF EXISTS non_postulants;
 DROP TABLE IF EXISTS membership;
 DROP PROCEDURE IF EXISTS Login;
 DROP PROCEDURE IF EXISTS NewPostulant;
+#-------------------------------------------------
 
+#--	Creates all needed tables
 CREATE TABLE user_roles(
 	ID int,
 	RoleName varchar(30),
@@ -80,7 +83,9 @@ CREATE TABLE IF NOT EXISTS memberships (
 	Paid tinyint(3) DEFAULT 0,
 	CONSTRAINT fk_membership_postulant_id FOREIGN KEY (PostulantID) REFERENCES postulants(ID)
 );
+#-------------------------------------------------
 
+#--	Inserts startup data into database
 INSERT INTO users(Username, FirstName, LastName, Pass, Phone, Email, Birthdate, UserRole) 
 VALUES
 ('paganeitor', 'Horacio', 'Pagani', '123456', '5465465', 'ml@jaja.com', '1988-12-30', 121),
@@ -94,3 +99,4 @@ VALUES('Facundo', 'Villarreal', 'DNI', 39416524, NOW(), DATE_ADD(NOW(), INTERVAL
 INSERT INTO memberships(PostulantID, ExpirationDate, Amount)
 VALUES (1, DATE_ADD(NOW(), INTERVAL 30 DAY), 150.0),
 (2, DATE_ADD(NOW(), INTERVAL 30 DAY), 180.0);
+#-------------------------------------------------

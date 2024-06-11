@@ -23,6 +23,13 @@ namespace SportsClubProject.Classes
             this.ExpirationCardDate = expirationCardDate;
         }
 
+        /// <summary>
+        /// Insert an instance of Card into database
+        /// </summary>
+        /// <returns>
+        /// True if insert was successful, false otherwise
+        /// </returns>
+        /// <exception cref="InvalidOperationException"></exception>
         internal bool Insert()
         {
             MySqlConnection conn = Connection.GetInstance().CreateConnection();

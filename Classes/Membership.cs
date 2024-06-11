@@ -11,6 +11,11 @@ namespace SportsClubProject.Classes
 		internal float? Amount { get; set; }
 		internal bool Paid { get; set; }
 
+		/// <summary>
+		/// Creates an instance of Membership from a Postulant object
+		/// </summary>
+		/// <param name="post"></param>
+		/// <returns></returns>
 		internal static Membership FromPostulant(Postulant post)
 		{
 			Membership membership = new();
@@ -20,6 +25,15 @@ namespace SportsClubProject.Classes
 			return membership;
 		}
 
+		/// <summary>
+		/// Assigns the amount value received as parameter to instance of Mermbership's amount 
+		/// field, sets the "paid" field as true, and sets the expiration date as one month from now.
+		/// Finally it'll execute the Update operation in database
+		/// </summary>
+		/// <param name="amount"></param>
+		/// <returns>
+		/// True if the update operation affected any amount of rows, false if no rows were affected
+		/// </returns>
 		internal bool UpdateFromPayment(float amount)
 		{
 			this.ExpirationDate = DateTime.Now.AddDays(30);
@@ -31,6 +45,13 @@ namespace SportsClubProject.Classes
 
 		#region Database Methods
 
+		/// <summary>
+		/// Inserts the current instance of Membership into database
+		/// </summary>
+		/// <returns>
+		/// True if insert was successful, false otherwise
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		internal bool InsertNew()
 		{
 
@@ -61,6 +82,14 @@ namespace SportsClubProject.Classes
 			return (affected > 0);
 		}
 
+		/// <summary>
+		/// Selects a single record from memberships table
+		/// </summary>
+		/// <param name="PostulantID"></param>
+		/// <returns>
+		/// Membership as an instance of this class, and null if no records were found that match the requested PostulantID
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		internal static Membership? SelectFromPostulantID(int PostulantID)
 		{
 			MySqlConnection conn = Connection.GetInstance().CreateConnection();
@@ -95,6 +124,13 @@ namespace SportsClubProject.Classes
 			return membership;
 		}
 
+		/// <summary>
+		///	Updates the record in database corresponding to the current instance of this class
+		/// </summary>
+		/// <returns>
+		/// True if update operation was successful, false otherwise
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		internal bool Update()
 		{
 
@@ -127,6 +163,14 @@ namespace SportsClubProject.Classes
 			return (affected > 0);
 		}
 
+		/// <summary>
+		///	Receives a reader as parameter and attempts to read all the required fields from it. It'll create a new instance of
+		///	Membership
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <returns>
+		/// The new instance of Memmbership
+		/// </returns>
 		private static Membership MembershipFromReader(MySqlDataReader reader)
 		{
 			Membership memb = new();

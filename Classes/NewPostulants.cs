@@ -12,6 +12,13 @@ namespace SportsClubProject.Classes
 {
     internal class NewPostulants
     {
+        /// <summary>
+        /// Creates a new postulant by executing the corresponding MySql Stored Procedure
+        /// </summary>
+        /// <param name="newPostulant"></param>
+        /// <returns>
+        /// SP's response as a string value
+        /// </returns>
         public string NewPostulant(Postulant newPostulant)
         {
             string? exit;

@@ -20,12 +20,20 @@ namespace SportsClubProject.Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Executes custom code on form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListMembers_Load(object sender, EventArgs e)
         {
             // Call the method LoadGrid()
             LoadGrid();
         }
 
+        /// <summary>
+        /// Executes a select operation from postulant table and brings all found records. Loads these instances into a grid
+        /// </summary>
         private void LoadGrid()
         {
             MySqlConnection conn = new MySqlConnection();

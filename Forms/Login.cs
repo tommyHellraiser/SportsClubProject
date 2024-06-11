@@ -19,6 +19,9 @@ namespace SportsClubProject.Forms
             InitializeComponent();
         }
 
+
+        #region Handlers
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             DataTable loginTable = new DataTable();
@@ -86,5 +89,7 @@ namespace SportsClubProject.Forms
                 txtPass.UseSystemPasswordChar = false;
             }
         }
+
+        #endregion
     }
 }

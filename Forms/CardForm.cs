@@ -25,6 +25,11 @@ namespace SportsClubProject.Forms
         public string? docType;
         public int? document;
 
+        /// <summary>
+        /// Executes custom code on form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CardForm_Load(object sender, EventArgs e)
         {
             lblName.Text = name;
@@ -36,23 +41,12 @@ namespace SportsClubProject.Forms
             lblDateExp.Text = DateTime.UtcNow.AddYears(1).ToShortDateString();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            btnPrint.Visible = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.ControlBox = false;
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(printForm);
-            pd.Print();
-            btnPrint.Visible = true;
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.ControlBox = true;
-            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
-        }
-
-        private void printForm(object o, PrintPageEventArgs e)
+		/// <summary>
+		/// Shows the CardForm form with custom content
+		/// </summary>
+		/// <param name="o"></param>
+		/// <param name="e"></param>
+		private void printForm(object o, PrintPageEventArgs e)
         {
             int width = this.Width;
             int height = this.Height;
@@ -73,5 +67,26 @@ namespace SportsClubProject.Forms
 
             e.Graphics.DrawImage(img, new Rectangle(x, y, scaledWidth, scaledHeight));
         }
-    }
+
+		#region Handlers
+
+		private void btnPrint_Click(object sender, EventArgs e)
+		{
+			btnPrint.Visible = false;
+			this.FormBorderStyle = FormBorderStyle.None;
+			this.ControlBox = false;
+			PrintDocument pd = new PrintDocument();
+			pd.PrintPage += new PrintPageEventHandler(printForm);
+			pd.Print();
+			btnPrint.Visible = true;
+			this.FormBorderStyle = FormBorderStyle.Sizable;
+			this.ControlBox = true;
+			MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+			this.Close();
+		}
+
+		#endregion
+
+	}
 }

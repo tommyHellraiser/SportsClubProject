@@ -12,7 +12,16 @@ namespace SportsClubProject.Classes
         {
 
         }
-                
+		
+		/// <summary>
+		/// Logs the user in by executing the corresponding MySql Stored Procedure
+		/// </summary>
+		/// <param name="inputName"></param>
+		/// <param name="inputPass"></param>
+		/// <returns>
+		/// An instance of the User class if successful, null otherwise
+		/// </returns>
+		/// <exception cref="InvalidDataException"></exception>
         public static User? LogUserIn (string inputName, string inputPass)
         {
 
@@ -46,6 +55,14 @@ namespace SportsClubProject.Classes
 
         #region Database methods
 
+		/// <summary>
+		///	Executes the login Stored Procedure
+		/// </summary>
+		/// <param name="inputUsername"></param>
+		/// <param name="inputPass"></param>
+		/// <returns>
+		/// A datatable containing the User class data
+		/// </returns>
         private static DataTable ExecLoginStoredProc(string inputUsername, string inputPass)
         {
 

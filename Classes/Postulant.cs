@@ -23,10 +23,16 @@ namespace SportsClubProject.Classes
         public bool HealthCert {  get; set; }
         public bool IsActive { get; set; }
 
+		#region Database methods
 
-        #region Database methods
-
-        internal static List<Postulant> SelectAllForDisplay()
+		/// <summary>
+		/// Selects all the records existing in postulants table without filtering
+		/// </summary>
+		/// <returns>
+		/// A list of Postulants instances
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
+		internal static List<Postulant> SelectAllForDisplay()
         {
 			MySqlConnection conn = Connection.GetInstance().CreateConnection();
 			List<Postulant> postulant = new();
@@ -59,6 +65,14 @@ namespace SportsClubProject.Classes
 			return postulant;
 		}
 
+        /// <summary>
+        /// Selects a single record from postulants table filtering by document
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns>
+        /// The instance of Postulant if record was found, null otherwise
+        /// </returns>
+        /// <exception cref="InvalidOperationException"></exception>
         internal static Postulant? SelectFromDocument(int document)
         {
 			MySqlConnection conn = Connection.GetInstance().CreateConnection();
@@ -93,23 +107,13 @@ namespace SportsClubProject.Classes
             return postulant;
         }
 
-        static Postulant PostulantFromReader(MySqlDataReader reader)
-        {
-            Postulant post = new Postulant();
-
-            post.ID = reader.GetInt16("ID");
-            post.FirstName = reader.GetString("FirstName");
-			post.LastName = reader.GetString("LastName");
-			post.DocumentType = reader.GetString("DocumentType");
-            post.Document = reader.GetInt32("Document");
-            post.InscriptionDate = reader.GetDateTime("InscriptionDate");
-			post.ExpirationDate = reader.GetDateTime("ExpirationDate");
-            post.HealthCert = reader.GetBoolean("HealthCert");
-            post.IsActive = reader.GetBoolean("IsActive");
-
-            return post;
-		}
-
+        /// <summary>
+        /// Updates a record in database that corresponds to the current instance of the Postulant class
+        /// </summary>
+        /// <returns>
+        /// True if update was successful, false otherwise
+        /// </returns>
+        /// <exception cref="InvalidOperationException"></exception>
         internal bool Update()
         {
 
@@ -140,8 +144,31 @@ namespace SportsClubProject.Classes
             return (affected > 0);
         }
 
+		/// <summary>
+		/// Creates an instance of Postulant from a reader, reading a single record from said object
+		/// </summary>
+		/// <param name="reader"></param>
+		/// <returns>
+		/// The instance of current class
+		/// </returns>
+		static Postulant PostulantFromReader(MySqlDataReader reader)
+		{
+			Postulant post = new Postulant();
 
-        #endregion
+			post.ID = reader.GetInt16("ID");
+			post.FirstName = reader.GetString("FirstName");
+			post.LastName = reader.GetString("LastName");
+			post.DocumentType = reader.GetString("DocumentType");
+			post.Document = reader.GetInt32("Document");
+			post.InscriptionDate = reader.GetDateTime("InscriptionDate");
+			post.ExpirationDate = reader.GetDateTime("ExpirationDate");
+			post.HealthCert = reader.GetBoolean("HealthCert");
+			post.IsActive = reader.GetBoolean("IsActive");
 
-    }
+			return post;
+		}
+
+		#endregion
+
+	}
 }

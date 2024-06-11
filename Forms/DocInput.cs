@@ -18,7 +18,8 @@ namespace SportsClubProject.Forms
             InitializeComponent();
         }
 
-        private void btnEnter_Click(object sender, EventArgs e)
+		#region Handlers
+		private void btnEnter_Click(object sender, EventArgs e)
         {
             Postulant? postulant = Postulant.SelectFromDocument(Convert.ToInt32(txtDocN.Text));
 
@@ -46,5 +47,7 @@ namespace SportsClubProject.Forms
 			this.Hide();
 			cardForm.ShowDialog();
 		}
-    }
+
+		#endregion
+	}
 }

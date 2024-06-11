@@ -11,11 +11,9 @@ using System.Xml.Linq;
 
 namespace SportsClubProject.Classes
 {
-    internal class NonPostulant
+    internal class NonPostulant : Person
     {
         public int? ID { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
         public string? DocumentType { get; set; }
         public int Document { get; set; }
         public DateTime? VisitDateTime { get; set; }
@@ -32,6 +30,13 @@ namespace SportsClubProject.Classes
 
         #region Database methods
 
+		/// <summary>
+		/// Inserts the current instance of this class into database
+		/// </summary>
+		/// <returns>
+		/// True if insert was successful, false otherwise
+		/// </returns>
+		/// <exception cref="InvalidOperationException"></exception>
         internal bool Insert()
         {
 			MySqlConnection conn = Connection.GetInstance().CreateConnection();

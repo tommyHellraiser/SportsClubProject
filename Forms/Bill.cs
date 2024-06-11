@@ -16,22 +16,8 @@ namespace SportsClubProject.Forms
         public int document;
         public float amount;
         public DateTime date;
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            btnPrint.Visible = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.ControlBox = false;
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(printForm);
-            pd.Print();
-            btnPrint.Visible = true;
-            this.FormBorderStyle = FormBorderStyle.Sizable; 
-            this.ControlBox = true;
-            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
-        }
-
+        
+        
         private void printForm (object o, PrintPageEventArgs e)
         {
             int width = this.Width;
@@ -50,16 +36,13 @@ namespace SportsClubProject.Forms
             e.Graphics.DrawImage(img, p);
         }
 
-
-        private void Bill_Load(object sender, EventArgs e)
-        {
-            lblDateToday.Text = DateTime.UtcNow.ToShortDateString();
-            lblNameInBill.Text = fullName;
-            lblStartDate.Text = Convert.ToString(date);
-            lblAmount.Text = Convert.ToString(amount);
-            lblFormPay.Text = formPay;
-        }
-
+        /// <summary>
+        /// Creates an instance of the Bill class from a Postulant class, a payment method and the paid amount
+        /// </summary>
+        /// <param name="post"></param>
+        /// <param name="paymentMethod"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         internal static Bill FromPostulant(Postulant post, string paymentMethod, float amount)
         {
             Bill bill = new Bill();
@@ -74,6 +57,13 @@ namespace SportsClubProject.Forms
             return bill;
         }
 
+		/// <summary>
+		/// Creates an instance of the Bill class from a NonPostulant class, a payment method and the paid amount
+		/// </summary>
+		/// <param name="post"></param>
+		/// <param name="paymentMethod"></param>
+		/// <param name="amount"></param>
+		/// <returns></returns>
 		internal static Bill FromNonPostulant(NonPostulant post, string paymentMethod, float amount)
 		{
 			Bill bill = new Bill();
@@ -86,5 +76,34 @@ namespace SportsClubProject.Forms
 
 			return bill;
 		}
+
+		#region Handlers
+
+		private void btnPrint_Click(object sender, EventArgs e)
+		{
+			btnPrint.Visible = false;
+			this.FormBorderStyle = FormBorderStyle.None;
+			this.ControlBox = false;
+			PrintDocument pd = new PrintDocument();
+			pd.PrintPage += new PrintPageEventHandler(printForm);
+			pd.Print();
+			btnPrint.Visible = true;
+			this.FormBorderStyle = FormBorderStyle.Sizable;
+			this.ControlBox = true;
+			MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+			this.Close();
+		}
+		private void Bill_Load(object sender, EventArgs e)
+		{
+			lblDateToday.Text = DateTime.UtcNow.ToShortDateString();
+			lblNameInBill.Text = fullName;
+			lblStartDate.Text = Convert.ToString(date);
+			lblAmount.Text = Convert.ToString(amount);
+			lblFormPay.Text = formPay;
+		}
+
+		#endregion
+
 	}
 }
