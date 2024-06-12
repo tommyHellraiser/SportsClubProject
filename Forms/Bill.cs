@@ -52,7 +52,7 @@ namespace SportsClubProject.Forms
             bill.postulantId = post.ID;
             bill.document = post.Document;
             bill.amount = amount;
-            //  Set date of user's inscription and add a timespan of NOW hours from midnight
+            //  Set date of user's inscription and add a timespan of NOW hours from midnight 
             bill.date = post.InscriptionDate + DateTime.Now.TimeOfDay;
 
             return bill;
