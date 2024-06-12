@@ -102,7 +102,7 @@
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(536, 239);
+            txtDni.Location = new Point(537, 238);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(180, 25);
             txtDni.TabIndex = 4;
@@ -110,8 +110,8 @@
             // cboType
             // 
             cboType.FormattingEnabled = true;
-            cboType.Items.AddRange(new object[] { "DNI" });
-            cboType.Location = new Point(334, 239);
+            cboType.Items.AddRange(new object[] { "DNI", "PASP.", "C.I." });
+            cboType.Location = new Point(301, 238);
             cboType.Name = "cboType";
             cboType.Size = new Size(138, 25);
             cboType.TabIndex = 3;
@@ -119,16 +119,16 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(486, 243);
+            label6.Location = new Point(453, 242);
             label6.Name = "label6";
-            label6.Size = new Size(31, 17);
+            label6.Size = new Size(78, 17);
             label6.TabIndex = 21;
-            label6.Text = "DNI";
+            label6.Text = "Nº DE DOC.";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(284, 243);
+            label7.Location = new Point(261, 242);
             label7.Name = "label7";
             label7.Size = new Size(34, 17);
             label7.TabIndex = 19;
@@ -165,7 +165,7 @@
             // ckBoxHealth
             // 
             ckBoxHealth.AutoSize = true;
-            ckBoxHealth.Location = new Point(745, 243);
+            ckBoxHealth.Location = new Point(746, 242);
             ckBoxHealth.Name = "ckBoxHealth";
             ckBoxHealth.Size = new Size(91, 21);
             ckBoxHealth.TabIndex = 26;
