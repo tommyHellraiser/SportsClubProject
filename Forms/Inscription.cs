@@ -95,7 +95,7 @@ namespace SportsClubProject.Forms
             txtLastName.Text = "";
             txtDni.Text = "";
             cboType.Text = "";
-			ckBoxHealth.Enabled = false;
+			ckBoxHealth.Checked = false;
             txtName.Focus();
         }
 
