@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS users(
 	LastName varchar (20) NOT NULL,
 	Pass varchar (15) NOT NULL,
 	Phone varchar (20) DEFAULT NULL,
-	Email varchar(15) NOT NULL,
+	Email varchar(50) NOT NULL,
 	Birthdate date,
 	UserRole INT DEFAULT 121,
 	ActiveUser boolean DEFAULT TRUE,
