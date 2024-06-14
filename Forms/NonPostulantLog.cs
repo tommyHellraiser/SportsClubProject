@@ -33,7 +33,7 @@ namespace SportsClubProject.Forms
 				if (txtName.Text == "" || txtLastName.Text == "" ||
 				txtDni.Text == "" || cboType.Text == "")
 				{
-					MessageBox.Show("Debe completar datos requeridos",
+					MessageBox.Show("Debe completar los datos requeridos",
 					"AVISO DEL SISTEMA", MessageBoxButtons.OK,
 					MessageBoxIcon.Error);
 				}

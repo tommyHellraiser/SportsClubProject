@@ -90,7 +90,7 @@ namespace SportsClubProject.Forms
 			btnPrint.Visible = true;
 			this.FormBorderStyle = FormBorderStyle.Sizable;
 			this.ControlBox = true;
-			MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",
+			MessageBox.Show("Operación exitosa", "AVISO DEL SISTEMA",
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
 			this.Close();
 		}

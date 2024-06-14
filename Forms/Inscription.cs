@@ -23,7 +23,7 @@ namespace SportsClubProject.Forms
 				if (txtName.Text == "" || txtLastName.Text == "" ||
 				txtDni.Text == "" || cboType.Text == "" || !ckBoxHealth.Checked)
 				{
-					MessageBox.Show("Debe completar datos requeridos",
+					MessageBox.Show("Debe completar los datos requeridos",
 					"AVISO DEL SISTEMA", MessageBoxButtons.OK,
 					MessageBoxIcon.Error);
 
@@ -43,7 +43,7 @@ namespace SportsClubProject.Forms
 
 				if (!int.TryParse(response, out int code))
 				{
-					MessageBox.Show("No se pudo crear el registro de socio!", "AVISO DEL SISTEMA",
+					MessageBox.Show("No se pudo crear el registro del socio!", "AVISO DEL SISTEMA",
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
@@ -51,7 +51,7 @@ namespace SportsClubProject.Forms
 				//  For code -1, postulant already exists. Retry with another Document
 				if (code == -1)
 				{
-					MessageBox.Show("POSTULANTE YA EXISTE", "AVISO DEL SISTEMA",
+					MessageBox.Show("EL POSTULANTE YA EXISTE", "AVISO DEL SISTEMA",
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
@@ -71,7 +71,7 @@ namespace SportsClubProject.Forms
 				Membership membership = Membership.FromPostulant(postulant);
 				membership.InsertNew();
 
-				MessageBox.Show("se almaceno con exito con el codigo Nro"
+				MessageBox.Show("Se almacenó con éxito con el codigo Nro"
 					+ response, "AVISO DEL SISTEMA",
 				MessageBoxButtons.OK, MessageBoxIcon.Question);
 
